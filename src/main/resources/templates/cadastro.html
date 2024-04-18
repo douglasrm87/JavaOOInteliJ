@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+<head>
+    <title>Página de Hello sendo apresentada</title>
+</head>
+<body>
+    <h1>Cadastrar um cliente</h1>
+    <form th:action="@{/cadastro}" th:object="${cliente}"  method="get"   >
+        <div>
+            <label>
+                Nome: <input type="text" name="nome"/>
+            </label>
+        </div>
+        <div>
+            <label for="nome">
+                Matricula:
+            </label>
+            <input id="nome" name="nome" th:value="${cliente.nome}">
+        </div>
+        <div>
+            <input type="submit" value="Cadastrar"/>
+        </div>
+    </form>
+</body>
+</html>

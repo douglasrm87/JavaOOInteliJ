@@ -53,4 +53,5 @@ public class ClienteDAO {
         jdbcConexao.update(INSERT_CLI, new Object[]{cliente.getNome()});
         return cliente;
     }
+
 }
