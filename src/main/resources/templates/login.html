@@ -2,6 +2,15 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
   <head>
     <title>Página de Login Apresentada. </title>
+    <style>
+       body {
+          background-color: lightgray;
+          width: 70%;
+          text-align: center;
+          margin: 0.5em 0 2em 0;
+          padding-top: 5em;
+       }
+    </style>
   </head>
   <body>
     <div th:if="${param.error}">
@@ -11,6 +20,7 @@
       Você deve executar logout.
     </div>
       <form th:action="@{/login}" method="post">
+
         <div>
           <label>
             Usuário: <input type="text" name="username"/>

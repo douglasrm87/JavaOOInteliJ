@@ -2,10 +2,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
     <head>
         <title>Página de Hello sendo apresentada</title>
+        <link rel="stylesheet" type="text/css" href="css/saudacao.css"   />
     </head>
     <body>
-        <h1 th:inline="text">Alo Mundo  <span th:remove="tag" sec:authentication="name">Biblioteca - thymeleaf</span>!</h1>
-        <h1>Olá <span th:text="${nomeCasa}"></span></h1>
+        <h1 class="base" th:inline="text">Alooooo Mundo  <span th:remove="tag" sec:authentication="name">Biblioteca - thymeleaf</span>!</h1>
+        <h1 >Olá <span th:text="${nomeCasa}"></span></h1>
         <form th:action="@{/logout}" method="post">
             <input type="submit" value="Sair."/>
         </form>
