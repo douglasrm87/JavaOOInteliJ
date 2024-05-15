@@ -2,6 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 <head>
     <title>Página de Hello sendo apresentada</title>
+    <link rel="stylesheet" type="text/css" href="css/cadastro.css"   />
 </head>
 <body>
     <h1>Cadastrar um cliente</h1>
@@ -19,7 +20,7 @@
 
     <form th:action="@{/consulta}" th:object="${cliente}"  method="get"   >
         <div>
-            <input type="submit" value="Consultar"/>
+            <input type="submit" value="Tela Consultar"/>
         </div>
     </form>
 </body>
