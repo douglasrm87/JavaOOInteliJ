@@ -26,7 +26,7 @@ public class ProjetoWEB {
             c.setNome("Douglas Mendes");
             clientes.salvarCliente(c);
 
-            c = new Cliente("Juliane Itapoa.");
+            c = new Cliente("Robson Itapoa.");
             clientes.salvarCliente(c);
             List <Cliente> listaCli = clientes.obterTodos();
             listaCli.forEach(System.out::println);;

@@ -16,16 +16,23 @@ import java.util.List;
 public class MinhasRotas implements WebMvcConfigurer {
     public void addViewControllers(ViewControllerRegistry registry) {
         registry.addViewController("/home").setViewName("home");
-        registry.addViewController("/").setViewName("home");
+        registry.addViewController("/").setViewName("login");
         registry.addViewController("/hello").setViewName("hello");
         registry.addViewController("/login").setViewName("login");
-        registry.addViewController("/cadastrocliente").setViewName("cadastrocliente");
+        registry.addViewController("/cadastro").setViewName("cadastro");
     }
 
     //mapeando para que a requisição cai neste metodo quando for acessar pelo browser com Verbos Rest
     // Testar com - http://localhost:8080/casa
     @RequestMapping(value = "/casa", method = RequestMethod.GET)
     public String carregarHello(ModelMap model) {
+        System.out.println("Acionado método carregarHello().");
+        model.addAttribute("nomeCasa", "Morando em prédio.");
+        return "hello";
+    }
+    @RequestMapping(value = "/login", method = RequestMethod.GET)
+    public String carregarLogin(ModelMap model) {
+        System.out.println("Acionado método carregarLogin().");
         model.addAttribute("nomeCasa", "Morando em prédio.");
         return "hello";
     }
@@ -36,6 +43,7 @@ public class MinhasRotas implements WebMvcConfigurer {
 
     @RequestMapping(value = "/cadastro", method = RequestMethod.GET)
     public String salvarClienteController(@ModelAttribute Cliente cli, Model padrao) {
+        System.out.println("Acionado método salvarClienteController().");
         padrao.addAttribute("cliente", new Cliente("Digitar algo aqui"));
         System.out.println("Acionado método salvarClienteController().");
         System.out.println("Nome lido no HTML: ");
@@ -46,6 +54,7 @@ public class MinhasRotas implements WebMvcConfigurer {
 
     @RequestMapping(value = "/consulta", method = RequestMethod.GET)
     public String listarClienteController(@ModelAttribute Cliente cli, Model padrao) {
+        System.out.println("Acionado método listarClienteController().");
         padrao.addAttribute("cliente", new Cliente());
         System.out.println("Acionado método listarClienteController().");
 
