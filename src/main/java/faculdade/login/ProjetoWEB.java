@@ -9,6 +9,17 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.web.bind.annotation.RestController;
 
+/*
+https://ubiquitous-spork-jpvg6x9x63qxjw-8081.app.github.dev/home
+jdbc:h2:tcp://ubiquitous-spork-jpvg6x9x63qxjw-8081.app.github.dev/~/testedb
+https://ubiquitous-spork-jpvg6x9x63qxjw-8081.app.github.dev/h2-console/login.do?jsessionid=d19584cf586906829d81ebaa5dfd9b6e
+
+String para conectar no H2
+jdbc:h2:mem:test
+
+
+
+ */
 import java.util.List;
 
 @SpringBootApplication

@@ -7,8 +7,8 @@
     <body>
         <h1 class="base" th:inline="text">Alooooo Mundo  <span th:remove="tag" sec:authentication="name">Biblioteca - thymeleaf</span>!</h1>
         <h1 >Olá <span th:text="${nomeCasa}"></span></h1>
-        <form th:action="@{/logout}" method="post">
-            <input type="submit" value="Sair."/>
+        <form th:action="@{/home}" method="get">
+            <input type="submit" value="Home"/>
         </form>
     </body>
 </html>

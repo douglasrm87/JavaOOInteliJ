@@ -19,22 +19,35 @@ public class MinhasRotas implements WebMvcConfigurer {
         registry.addViewController("/").setViewName("login");
         registry.addViewController("/hello").setViewName("hello");
         registry.addViewController("/login").setViewName("login");
+        registry.addViewController("/logout").setViewName("login");
         registry.addViewController("/cadastro").setViewName("cadastro");
     }
 
     //mapeando para que a requisição cai neste metodo quando for acessar pelo browser com Verbos Rest
     // Testar com - http://localhost:8080/casa
-    @RequestMapping(value = "/casa", method = RequestMethod.GET)
+    @RequestMapping(value = "/hello ", method = RequestMethod.GET)
     public String carregarHello(ModelMap model) {
         System.out.println("Acionado método carregarHello().");
-        model.addAttribute("nomeCasa", "Morando em prédio.");
+        model.addAttribute("nomeCasa", "Tela Hello carregada.");
         return "hello";
     }
-    @RequestMapping(value = "/login", method = RequestMethod.GET)
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
     public String carregarLogin(ModelMap model) {
         System.out.println("Acionado método carregarLogin().");
-        model.addAttribute("nomeCasa", "Morando em prédio.");
-        return "hello";
+        model.addAttribute("nomeCasa", "Login Executado.");
+        return "login";
+    }
+    @RequestMapping(value = "/logout", method = RequestMethod.GET)
+    public String carregarLogout(ModelMap model) {
+        System.out.println("Acionado método carregarLogout().");
+        model.addAttribute("nomeCasa", "Sair do sistema.");
+        return "logout";
+    }
+    @RequestMapping(value = "/home", method = RequestMethod.GET)
+    public String carregarHome(ModelMap model) {
+        System.out.println("Acionado método carregarHome().");
+        model.addAttribute("nomeCasa", "Carregar a tela de Home.");
+        return "home";
     }
 
     // https://vitormoschetti.medium.com/primeiro-crud-com-spring-boot-5b7abd118ded
