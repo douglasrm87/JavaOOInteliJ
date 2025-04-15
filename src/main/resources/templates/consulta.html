@@ -65,7 +65,17 @@
         text-align: left;
         color: #333333;
       }
-
+      .consulta-container .secondary-button {
+        background-color: #6c757d;
+        color: white;
+        border: none;
+        padding: 0.8em 1.5em;
+        border-radius: 5px;
+        font-size: 1em;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        margin-top: 1em;
+      }
       .consulta-container .result h2 {
         margin: 0.5em 0;
       }
@@ -74,12 +84,7 @@
   <body>
     <div class="consulta-container">
       <h1>Consultar Cliente</h1>
-      <form th:action="@{/consulta}" th:object="${cliente}" method="get">
-        <label for="nome">Nome</label>
-        <input id="nome" name="nome" type="text" th:value="${cliente.nome}" placeholder="Digite o nome do cliente" />
 
-        <input type="submit" value="Consultar" />
-      </form>
 
       <div class="result" th:if="${cliente.nome}">
         <h2>Resultado:</h2>
@@ -87,8 +92,15 @@
         <p><strong>Matrícula:</strong> <span th:text="${cliente.id}"></span></p>
       </div>
 
+      <form th:action="@{/consulta}" th:object="${cliente}" method="get">
+        <label for="nome">Nome</label>
+        <input id="nome" name="nome" type="text" th:value="${cliente.nome}" placeholder="Digite o nome do cliente" />
+
+        <input type="submit" value="Consultar" />
+      </form>
+
       <form th:action="@{/cadastro}" method="get">
-        <input type="submit" value="Cadastrar Novo Cliente" />
+        <input type="submit" class="secondary-button" value="Cadastrar Novo Cliente" />
       </form>
     </div>
   </body>

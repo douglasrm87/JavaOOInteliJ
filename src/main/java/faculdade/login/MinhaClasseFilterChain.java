@@ -30,9 +30,11 @@ public class MinhaClasseFilterChain {
                 .headers(headers -> headers.frameOptions().disable())
                 .csrf(csrf -> csrf
                         .ignoringRequestMatchers(AntPathRequestMatcher.antMatcher("/h2-console/**")))
-                .formLogin((form) -> form
+                        .formLogin((form) -> form
                         .loginPage("/login")
-                        .defaultSuccessUrl("/home", true) // Redirect to /home on successful login
+                        .successHandler((request, response, authentication) -> {
+                            response.sendRedirect("https://ubiquitous-spork-jpvg6x9x63qxjw-8081.app.github.dev/home"); // Redireciona para uma URL relativa
+                        })
                         .permitAll()
                 )
                 .logout((logout) -> logout.permitAll());
@@ -48,52 +50,6 @@ public class MinhaClasseFilterChain {
                                 .build();
                 return new InMemoryUserDetailsManager(user);
         }
-/*
-
-        @Bean
-        public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-                http.authorizeHttpRequests((requests) -> requests
-                                                .requestMatchers(AntPathRequestMatcher.antMatcher("/h2-console/**")).permitAll()
-                                                .requestMatchers("/", "/home").permitAll()
-                                                .anyRequest().authenticated()
-                                )
-                                .headers(headers -> headers.frameOptions().disable())
-                                .csrf(csrf -> csrf
-                                                .ignoringRequestMatchers(AntPathRequestMatcher.antMatcher("/h2-console/**")))
-                                .formLogin((form) -> form
-                                                .loginPage("/login")
-                                                .defaultSuccessUrl("/home", true) // Redirect to /home on successful login
-                                                .permitAll()
-                                )
-                                .logout((logout) -> logout.permitAll());
-                return http.build();
-        }
-
-        
-public UserDetailsService users() {
-	UserDetails user = User.builder()
-		.username("user")
-		.password("{bcrypt}$2a$10$GRLdNijSQMUvl/au9ofL.eDwmoohzzS7.rmNSJZ.0FxO/BTk76klW")
-		.roles("USER")
-		.build();
-	UserDetails admin = User.builder()
-		.username("admin")
-		.password("{bcrypt}$2a$10$GRLdNijSQMUvl/au9ofL.eDwmoohzzS7.rmNSJZ.0FxO/BTk76klW")
-		.roles("USER", "ADMIN")
-		.build();
-	return new InMemoryUserDetailsManager(user, admin);
-}
-
-    @Bean
-    public UserDetailsService userDetailsService() {
-        UserDetails user =
-                User.withDefaultPasswordEncoder()
-                        .username("drm")
-                        .password("12345")
-                        .roles("USER")
-                        .build();
-        return new InMemoryUserDetailsManager(user);
-    }
-         */
+ 
 }
 
