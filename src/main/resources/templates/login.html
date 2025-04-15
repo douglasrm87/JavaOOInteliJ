@@ -1,40 +1,90 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
   <head>
-    <title>Página de Login Apresentada. </title>
+    <title>Página de Login</title>
     <style>
-       body {
-          background-color: lightgray;
-          width: 70%;
-          text-align: center;
-          margin: 0.5em 0 2em 0;
-          padding-top: 5em;
-          font-size: 2.5em;
-       }
+      body {
+        background-color: #f3f4f6;
+        font-family: Arial, sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+      }
+
+      .login-container {
+        background-color: #ffffff;
+        padding: 2em;
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        width: 100%;
+        max-width: 400px;
+        text-align: center;
+      }
+
+      .login-container h1 {
+        margin-bottom: 1em;
+        color: #333333;
+      }
+
+      .login-container label {
+        display: block;
+        margin-bottom: 0.5em;
+        color: #555555;
+        font-weight: bold;
+        text-align: left;
+      }
+
+      .login-container input[type="text"],
+      .login-container input[type="password"] {
+        width: 100%;
+        padding: 0.8em;
+        margin-bottom: 1em;
+        border: 1px solid #cccccc;
+        border-radius: 5px;
+        font-size: 1em;
+      }
+
+      .login-container input[type="submit"] {
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        padding: 0.8em 1.5em;
+        border-radius: 5px;
+        font-size: 1em;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+
+      .login-container input[type="submit"]:hover {
+        background-color: #45a049;
+      }
+
+      .login-container .error-message {
+        color: #ff0000;
+        margin-bottom: 1em;
+      }
     </style>
   </head>
   <body>
-    <div th:if="${param.error}">
-      Usuário e senha inválidos.
-    </div>
-    <div th:if="${param.logout}">
-      Você deve executar logout.
-    </div>
+    <div class="login-container">
+      <h1>Login</h1>
+      <div th:if="${param.error}" class="error-message">
+        Usuário e senha inválidos.
+      </div>
+      <div th:if="${param.logout}" class="error-message">
+        Você deve executar logout.
+      </div>
       <form th:action="@{/login}" method="post">
+        <label for="username">Usuário</label>
+        <input type="text" id="username" name="username" placeholder="Digite seu usuário" />
 
-        <div>
-          <label>
-            Usuário (drm): <input type="text" name="username"/>
-          </label>
-        </div>
-        <div>
-          <label>
-            Senha (12345): <input type="password" name="password"/>
-          </label>
-        </div>
-        <div>
-            <input type="submit" value="Efetuar login"/>
-        </div>       
+        <label for="password">Senha</label>
+        <input type="password" id="password" name="password" placeholder="Digite sua senha" />
+
+        <input type="submit" value="Entrar" />
       </form>
+    </div>
   </body>
 </html>

@@ -34,7 +34,7 @@ public class MinhasRotas implements WebMvcConfigurer {
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public String carregarLogin(ModelMap model) {
         System.out.println("Acionado método carregarLogin().");
-        model.addAttribute("nomeCasa", "Login Executado.");
+        //model.addAttribute("nomeCasa", "Login Executado.");
         return "login";
     }
     @RequestMapping(value = "/logout", method = RequestMethod.GET)
