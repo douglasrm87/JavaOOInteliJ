@@ -33,7 +33,7 @@ public class MinhaClasseFilterChain {
                         .formLogin((form) -> form
                         .loginPage("/login")
                         .successHandler((request, response, authentication) -> {
-                            response.sendRedirect("https://ubiquitous-spork-jpvg6x9x63qxjw-8081.app.github.dev/home"); // Redireciona para uma URL relativa
+                            response.sendRedirect("/home"); // Redireciona para uma URL relativa
                         })
                         .permitAll()
                 )
