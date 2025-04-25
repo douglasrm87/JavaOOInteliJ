@@ -80,15 +80,18 @@
   <body>
     <div class="cadastro-container">
       <h1>Cadastro de Cliente</h1>
-      <form th:action="@{/cadastro}" th:object="${cliente}" method="get">
-        <label for="nome">Nome</label>
-        <input id="nome" name="nome" type="text" th:value="${cliente.nome}" placeholder="Digite o nome do cliente" />
-
-        <input type="submit" value="Cadastrar" />
+      <form th:action="@{/cadastro}" th:object="${cliente}" method="get" style="display: inline;">
+      <label for="nome">Nome</label>
+      <input id="nome" name="nome" type="text" th:value="${cliente.nome}" placeholder="Digite o nome do cliente" />
+      <input type="submit" value="Cadastrar" />
       </form>
 
-      <form th:action="@{/consulta}" method="get">
-        <input type="submit" class="secondary-button" value="Ir para Consulta" />
+      <form th:action="@{/consulta}" method="get" style="display: inline;">
+      <input type="submit" class="secondary-button" value="Ir para Consulta" />
+      </form>
+      
+      <form th:action="@{/home}" method="get" style="display: inline;">
+      <input type="submit" class="secondary-button" value="Ir para Home" />
       </form>
     </div>
   </body>

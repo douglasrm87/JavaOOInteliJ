@@ -17,7 +17,8 @@ https://ubiquitous-spork-jpvg6x9x63qxjw-8081.app.github.dev/h2-console/login.do?
 String para conectar no H2
 jdbc:h2:mem:test
 
-
+Exemplos HTML
+    https://www.w3schools.com/TAgs/tag_nav.asp
 
  */
 import java.util.List;
