@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Caixa Eletrônico</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/frentecaixaeletronico.css">
+    
+</head>
+<body>
+    <div class="container">
+        <!-- Você pode substituir o SVG abaixo pelo logo da sua empresa se desejar -->
+        <svg class="logo" viewBox="0 0 64 64" fill="none">
+            <circle cx="32" cy="32" r="32" fill="#005baa"/>
+            <rect x="18" y="18" width="28" height="28" rx="6" fill="#fff"/>
+            <rect x="26" y="26" width="12" height="12" rx="3" fill="#00c6fb"/>
+        </svg>
+        <h1>Bem-vindo ao Caixa Eletrônicoooo</h1>
+        <div class="opcoes">
+            <form th:action="@{/banco/cadastrocontacorrente}" method="get"  >
+                <input type="submit" class="opcao-btn" value="Cadastrar Conta Corrente" />
+            </form>
+            <form th:action="@{/banco/saquefrentecaixaeletronico}" method="get"  >
+                <input type="submit" class="opcao-btn" value="Efetuar um saque" />
+            </form>
+            <button class="opcao-btn" onclick="window.location.href='/deposito'">Depósito</button>
+            <button class="opcao-btn" onclick="window.location.href='/extrato'">Extrato</button>
+
+            <form th:action="@{/home}" method="get" style="display: inline;">
+                <input type="submit" class="opcao-btn" value="Ir para Home" />
+            </form>
+        </div>
+
+        
+            
+            
+        
+
+
+    </div>
+</body>
+</html>

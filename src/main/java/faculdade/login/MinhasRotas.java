@@ -64,20 +64,6 @@ public class MinhasRotas implements WebMvcConfigurer {
     // 3 - Incluir no home.html.
 
 
-    @RequestMapping(value = "/frentecaixaeletronico", method = RequestMethod.GET)
-    public String operarcaixaEletronico(ModelMap model) {
-        System.out.println("Acionado método operarcaixaEletronico().");
-        model.addAttribute("nomeCasa", "Carregar a tela de operarcaixaEletronico.");
-        return "frentecaixaeletronico";
-    }
-    
-    @RequestMapping(value = "/cadastrofrentecaixaeletronico", method = RequestMethod.GET)
-    public String cadastrarCaixaEletronico(ModelMap model) {
-        System.out.println("Acionado método cadastrarCaixaEletronico().");
-        return "cadastrofrentecaixaeletronico";
-    }
-    
-
     // https://vitormoschetti.medium.com/primeiro-crud-com-spring-boot-5b7abd118ded
     @Autowired
     private ClienteDAO clienteRepository;
@@ -109,6 +95,26 @@ public class MinhasRotas implements WebMvcConfigurer {
                 padrao.addAttribute("cliente", new Cliente());
             }
         return "consulta";
+    }
+
+
+    @RequestMapping(value = "/banco/frentecaixaeletronico", method = RequestMethod.GET)
+    public String operarcaixaEletronico(ModelMap model) {
+        System.out.println("Acionado método operarcaixaEletronico().");
+        model.addAttribute("nomeCasa", "Carregar a tela de operarcaixaEletronico.");
+        return "/banco/frentecaixaeletronico";
+    }
+    
+    @RequestMapping(value = "/banco/cadastrocontacorrente", method = RequestMethod.GET)
+    public String cadastrarCaixaEletronico(ModelMap model) {
+        System.out.println("Acionado método cadastrarCaixaEletronico().");
+        return "/banco/cadastrocontacorrente";
+    }
+
+    @RequestMapping(value = "/banco/saquefrentecaixaeletronico", method = RequestMethod.GET)
+    public String sacarCaixaEletronico(ModelMap model) {
+        System.out.println("Acionado método sacarCaixaEletronico().");
+        return "/banco/saquefrentecaixaeletronico";
     }
 
 }

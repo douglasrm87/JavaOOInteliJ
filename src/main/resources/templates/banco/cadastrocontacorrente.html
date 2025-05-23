@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+  <head>
+    <title>Página de Cadastro Conta Corrente</title>
+<link rel="stylesheet" type="text/css" th:href="@{/css/banco/cadastrocontacorrente.css}" />
+  </head>
+  <body>
+    <div class="cadastro-container">
+      <h1>Cadastro de Conta Corrente</h1>
+      <form th:action="@{/home}" method="get" style="display: inline;">
+        <input type="submit" class="opcao-btn" value="Ir para Home" />
+      </form>
+      <form th:action="@{/banco/cadastrocontacorrente}" method="post">
+        <label for="numeroConta">Número da Conta:</label>
+        <input type="text" id="numeroConta" name="numeroConta" required />
+        <label for="agencia">Agência:</label>
+        <input type="text" id="agencia" name="agencia" required />
+        <label for="cpf">CPF:</label>
+        <input type="text" id="cpf" name="cpf" required />
+        <input type="submit" value="Cadastrar" />
+      </form>
+
+      <p class="base">Clicar <a th:href="@{/banco/frentecaixaeletronico}">Aqui</a> para Frente de caixa Eletrônico.</p>
+      
+    </div>
+  </body>
+</html>

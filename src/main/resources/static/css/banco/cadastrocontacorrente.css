@@ -1,0 +1,74 @@
+body {
+    background-color: #f9fafb;
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.cadastro-container {
+    background-color: #ffffff;
+    padding: 2em;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+}
+
+.cadastro-container h1 {
+    margin-bottom: 1em;
+    color: #333333;
+}
+
+.cadastro-container label {
+    display: block;
+    margin-bottom: 0.5em;
+    color: #555555;
+    font-weight: bold;
+    text-align: left;
+}
+
+.cadastro-container input[type="text"] {
+    width: 100%;
+    padding: 0.8em;
+    margin-bottom: 1em;
+    border: 1px solid #cccccc;
+    border-radius: 5px;
+    font-size: 1em;
+}
+
+.cadastro-container input[type="submit"] {
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    padding: 0.8em 1.5em;
+    border-radius: 5px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.cadastro-container input[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+.cadastro-container .secondary-button {
+    background-color: #6c757d;
+    color: white;
+    border: none;
+    padding: 0.8em 1.5em;
+    border-radius: 5px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 1em;
+}
+
+.cadastro-container .secondary-button:hover {
+    background-color: #5a6268;
+}
+
+
