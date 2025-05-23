@@ -50,7 +50,7 @@ public class MinhasRotas implements WebMvcConfigurer {
         return "home";
     }
     // 1 - Criar a página
-    // 2 - Criar o controller
+    // 2 - Criar o metodo da rota.
     // 3 - Criar o método que vai receber os dados do formulário
     // 4 - Criar o método que vai salvar os dados no banco de dados
     @RequestMapping(value = "/pedido", method = RequestMethod.GET)
@@ -59,7 +59,24 @@ public class MinhasRotas implements WebMvcConfigurer {
         model.addAttribute("nomeCasa", "Carregar a tela de Home.");
         return "pedido";
     }
+    // 1 - Criar a página
+    // 2 - Criar o metodo da rota.
+    // 3 - Incluir no home.html.
 
+
+    @RequestMapping(value = "/frentecaixaeletronico", method = RequestMethod.GET)
+    public String operarcaixaEletronico(ModelMap model) {
+        System.out.println("Acionado método operarcaixaEletronico().");
+        model.addAttribute("nomeCasa", "Carregar a tela de operarcaixaEletronico.");
+        return "frentecaixaeletronico";
+    }
+    
+    @RequestMapping(value = "/cadastrofrentecaixaeletronico", method = RequestMethod.GET)
+    public String cadastrarCaixaEletronico(ModelMap model) {
+        System.out.println("Acionado método cadastrarCaixaEletronico().");
+        return "cadastrofrentecaixaeletronico";
+    }
+    
 
     // https://vitormoschetti.medium.com/primeiro-crud-com-spring-boot-5b7abd118ded
     @Autowired
