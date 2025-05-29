@@ -15,12 +15,14 @@ import java.util.List;
 @Controller
 public class MinhasRotas implements WebMvcConfigurer {
     public void addViewControllers(ViewControllerRegistry registry) {
-        registry.addViewController("/home").setViewName("home");
+        registry.addViewController("/").setViewName("login");
+
+       /* registry.addViewController("/home").setViewName("home");
         registry.addViewController("/").setViewName("login");
         registry.addViewController("/hello").setViewName("hello");
         registry.addViewController("/login").setViewName("login");
         registry.addViewController("/logout").setViewName("login");
-        registry.addViewController("/cadastro").setViewName("cadastro");
+        registry.addViewController("/cadastro").setViewName("cadastro");  */
     }
 
     //mapeando para que a requisição cai neste metodo quando for acessar pelo browser com Verbos Rest
@@ -34,7 +36,6 @@ public class MinhasRotas implements WebMvcConfigurer {
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public String carregarLogin(ModelMap model) {
         System.out.println("Acionado método carregarLogin().");
-        //model.addAttribute("nomeCasa", "Login Executado.");
         return "login";
     }
     @RequestMapping(value = "/logout", method = RequestMethod.GET)

@@ -42,6 +42,7 @@ h1 {
     font-size: 1.1rem;
     font-weight: 500;
     cursor: pointer;
+    width: 100%;
     transition: background 0.2s, transform 0.2s;
     box-shadow: 0 2px 8px rgba(0,91,170,0.08);
 }
