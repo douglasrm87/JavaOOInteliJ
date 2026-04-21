@@ -1,42 +1,96 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Caixa Eletrônico</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/banco/frentecaixaeletronico.css">
-    
+    <title>Caixa Eletrônico</title>
+    <link rel="stylesheet" type="text/css" href="/css/banco.css" />
 </head>
 <body>
-    <div class="container">
-        <!-- Você pode substituir o SVG abaixo pelo logo da sua empresa se desejar -->
-        <svg class="logo" viewBox="0 0 64 64" fill="none">
-            <circle cx="32" cy="32" r="32" fill="#005baa"/>
-            <rect x="18" y="18" width="28" height="28" rx="6" fill="#fff"/>
-            <rect x="26" y="26" width="12" height="12" rx="3" fill="#00c6fb"/>
-        </svg>
-        <h1>Bem-vindo ao Caixa Eletrônicoooo</h1>
-        <div class="opcoes">
-            <form th:action="@{/banco/cadastrocontacorrente}" method="get"  >
-                <input type="submit" class="opcao-btn" value="Cadastrar Conta Corrente" />
-            </form>
-            <form th:action="@{/banco/saquefrentecaixaeletronico}" method="get"  >
-                <input type="submit" class="opcao-btn" value="Efetuar um saque" />
-            </form>
-            <button class="opcao-btn" onclick="window.location.href='/deposito'">Depósito</button>
-            <button class="opcao-btn" onclick="window.location.href='/extrato'">Extrato</button>
+    <!-- Navegação -->
+    <nav>
+        <a href="/home">Home</a>
+        <a href="/banco/cadastrocontacorrente">Cadastro</a>
+        <a href="/logout">Sair</a>
+    </nav>
 
-            <form th:action="@{/home}" method="get" style="display: inline;">
-                <input type="submit" class="opcao-btn" value="Ir para Home" />
-            </form>
+    <!-- Container do ATM -->
+    <div class="atm-container">
+        <!-- Cabeçalho do ATM -->
+        <div class="atm-header">
+            <h1>🏧 Caixa Eletrônico</h1>
+            <p>Bem-vindo! Escolha uma operação</p>
         </div>
 
-        
-            
-            
-        
+        <!-- Corpo do ATM -->
+        <div class="atm-body">
+            <!-- Menu Principal -->
+            <div class="atm-menu">
+                <!-- Saque -->
+                <form th:action="@{/banco/saque}" method="get">
+                    <button type="submit" class="atm-button">
+                        <span>💸</span>
+                        <span>Saque</span>
+                    </button>
+                </form>
 
+                <!-- Depósito -->
+                <form th:action="@{/banco/deposito}" method="get">
+                    <button type="submit" class="atm-button">
+                        <span>💵</span>
+                        <span>Depósito</span>
+                    </button>
+                </form>
 
+                <!-- Extrato -->
+                <form th:action="@{/banco/extrato}" method="get">
+                    <button type="submit" class="atm-button">
+                        <span>📋</span>
+                        <span>Extrato</span>
+                    </button>
+                </form>
+
+                <!-- Consultar Saldo -->
+                <form th:action="@{/banco/saldo}" method="get">
+                    <button type="submit" class="atm-button">
+                        <span>💰</span>
+                        <span>Consultar Saldo</span>
+                    </button>
+                </form>
+
+                <!-- Cadastrar Conta -->
+                <form th:action="@{/banco/cadastrocontacorrente}" method="get">
+                    <button type="submit" class="atm-button">
+                        <span>📝</span>
+                        <span>Cadastrar Conta</span>
+                    </button>
+                </form>
+
+                <!-- Voltar para Home -->
+                <form th:action="@{/home}" method="get">
+                    <button type="submit" class="atm-button back">
+                        <span>🏠</span>
+                        <span>Voltar para Home</span>
+                    </button>
+                </form>
+            </div>
+
+            <!-- Informações do Sistema -->
+            <div style="margin-top: 2rem; padding-top: 1.5rem; border-top: 2px solid #e0e0e0; text-align: center; color: #666;">
+                <p style="margin: 0.5rem 0; font-size: 0.9rem;">
+                    <strong>💡 Dica:</strong> Selecione uma operação acima para começar
+                </p>
+                <p style="margin: 0.5rem 0; font-size: 0.85rem; color: #999;">
+                    Sistema Bancário v1.0 | Banco de Dados H2
+                </p>
+            </div>
+        </div>
     </div>
+
+    <!-- Footer -->
+    <footer>
+        <p><strong>Caixa Eletrônico - Sistema Bancário Educacional</strong></p>
+        <p>Desenvolvido com Java Spring Boot e Thymeleaf</p>
+    </footer>
 </body>
 </html>

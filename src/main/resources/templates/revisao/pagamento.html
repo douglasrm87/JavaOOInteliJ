@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pagamento - Duke Revisão</title>
+    <link rel="stylesheet" type="text/css" href="/css/base.css" />
+    <link rel="stylesheet" type="text/css" href="/css/revisao/revisao.css" />
+    <link rel="stylesheet" type="text/css" href="/css/revisao/pagamento.css" />
+</head>
+<body>
+    <!-- Navegação -->
+    <nav>
+        <a href="/home">Home</a>
+        <a href="/revisao/inicio">Duke Revisão</a>
+        <a href="/revisao/carrinho">🛒 Carrinho</a>
+        <a href="/logout">Sair</a>
+    </nav>
+
+    <!-- Container -->
+    <div class="container" style="max-width: 900px; margin: 0 auto; padding: 2rem;">
+        
+        <!-- Header -->
+        <div class="page-header">
+            <h1>💳 Escolha o Método de Pagamento</h1>
+            <p>Selecione a forma que melhor se adequa a você</p>
+        </div>
+
+        <!-- Info Educacional -->
+        <div class="educational-box">
+            <h3>📚 Conceito em Destaque:</h3>
+            <p>
+                <strong>STRATEGY PATTERN E POLIMORFISMO</strong><br>
+                Três diferentes formas de pagar (<code>CartaoCredito</code>, <code>PIX</code>, <code>PagamentoPix</code>)
+                implementam a mesma interface <code>MetodoPagamento</code>.
+                O código cliente não precisa saber qual tipo é!
+            </p>
+        </div>
+
+        <!-- Total a Pagar -->
+        <div class="total-display">
+            <h2>Valor Total:</h2>
+            <div class="valor-grande">
+                <span th:text="'R$ ' + ${totalFormatado}">R$ 0,00</span>
+            </div>
+        </div>
+
+        <!-- Métodos de Pagamento -->
+        <div class="metodos-container">
+            
+            <!-- Método 1: Cartão de Crédito -->
+            <div class="metodo-card">
+                <div class="metodo-header">
+                    <div class="metodo-icon">💳</div>
+                    <h3>Cartão de Crédito</h3>
+                </div>
+                <div class="metodo-info">
+                    <p class="metodo-desc">
+                        Pague com segurança usando seu cartão de crédito. 
+                        Suporta parcelamento em até 12x.
+                    </p>
+                    <div class="metodo-features">
+                        <span class="feature">✅ Seguro</span>
+                        <span class="feature">✅ Parcelado</span>
+                        <span class="feature">✅ Instantâneo</span>
+                    </div>
+                    <div class="concept-note">
+                        <strong>Conceito:</strong> 
+                        <code>new CartaoCredito("1234-5678-9999-0000")</code>
+                        <br><em>Implementa MetodoPagamento.processar()</em>
+                    </div>
+                </div>
+                <form action="/revisao/processar-pagamento" method="post">
+                    <input type="hidden" name="metodo" value="cartao">
+                    <input type="hidden" name="chave" value="1234-5678-9999-0000">
+                    <button type="submit" class="btn-payment">
+                        Pagar com Cartão 💳
+                    </button>
+                </form>
+            </div>
+
+            <!-- Método 2: PIX -->
+            <div class="metodo-card">
+                <div class="metodo-header">
+                    <div class="metodo-icon">📱</div>
+                    <h3>PIX Instantâneo</h3>
+                </div>
+                <div class="metodo-info">
+                    <p class="metodo-desc">
+                        Transferência bancária instantânea, 24/7, sem limite.
+                        Sem taxa para pessoa física.
+                    </p>
+                    <div class="metodo-features">
+                        <span class="feature">✅ Sem taxa</span>
+                        <span class="feature">✅ Instantâneo</span>
+                        <span class="feature">✅ 24/7</span>
+                    </div>
+                    <div class="concept-note">
+                        <strong>Conceito:</strong> 
+                        <code>new PIX("seu-pix@email.com")</code>
+                        <br><em>Mesma interface, implementação diferente</em>
+                    </div>
+                </div>
+                <form action="/revisao/processar-pagamento" method="post">
+                    <input type="hidden" name="metodo" value="pix">
+                    <input type="hidden" name="chave" value="seu-pix@email.com">
+                    <button type="submit" class="btn-payment">
+                        Pagar com PIX 📱
+                    </button>
+                </form>
+            </div>
+
+            <!-- Método 3: PIX com QR Code -->
+            <div class="metodo-card featured">
+                <div class="badge-destaque">🌟 RECOMENDADO</div>
+                <div class="metodo-header">
+                    <div class="metodo-icon">📲</div>
+                    <h3>PIX com QR Code</h3>
+                </div>
+                <div class="metodo-info">
+                    <p class="metodo-desc">
+                        Escaneia o QR Code com seu telefone. Super rápido e seguro!
+                        A maneira mais moderna de pagar.
+                    </p>
+                    <div class="metodo-features">
+                        <span class="feature">✅ QR Code</span>
+                        <span class="feature">✅ Mais seguro</span>
+                        <span class="feature">✅ Moderno</span>
+                    </div>
+                    <div class="concept-note">
+                        <strong>Conceito:</strong> 
+                        <code>new PagamentoPix("chave-aleatoria")</code>
+                        <br><em>Extensão de PIX com feature adicional (QR Code)</em>
+                    </div>
+                </div>
+                <form action="/revisao/processar-pagamento" method="post">
+                    <input type="hidden" name="metodo" value="pix-qrcode">
+                    <input type="hidden" name="chave" value="chave-aleatoria-123456">
+                    <button type="submit" class="btn-payment featured">
+                        Pagar com PIX + QR 📲
+                    </button>
+                </form>
+            </div>
+
+        </div>
+
+        <!-- Seção: Strategy Pattern Explicado -->
+        <section class="strategy-section">
+            <h2>🎯 Strategy Pattern em Ação</h2>
+            <div class="strategy-content">
+                <p>
+                    Este projeto demonstra o <strong>Strategy Pattern</strong>, um padrão de design 
+                    que permite você escolher um algoritmo em tempo de execução.
+                </p>
+                
+                <div class="strategy-example">
+                    <h3>📋 Interface (Contrato)</h3>
+                    <pre><code>@FunctionalInterface
+public interface MetodoPagamento {
+    void processar(double valor) throws PagamentoException;
+}</code></pre>
+                </div>
+
+                <div class="strategy-example">
+                    <h3>💳 Implementação 1: CartaoCredito</h3>
+                    <pre><code>public class CartaoCredito implements MetodoPagamento {
+    @Override
+    public void processar(double valor) {
+        // Validações de cartão
+        // Autenticação
+        // Processamento
+    }
+}</code></pre>
+                </div>
+
+                <div class="strategy-example">
+                    <h3>📱 Implementação 2: PIX</h3>
+                    <pre><code>public class PIX implements MetodoPagamento {
+    @Override
+    public void processar(double valor) {
+        // Validação de chave PIX
+        // Processamento instantâneo
+        // Sem limite
+    }
+}</code></pre>
+                </div>
+
+                <div class="strategy-example">
+                    <h3>🎯 Uso: Polimorfismo!</h3>
+                    <pre><code>// Pedido não precisa saber qual tipo!
+public void fecharPedido(MetodoPagamento metodo, double valor) {
+    metodo.processar(valor);  // ← POLIMORFISMO!
+}
+
+// Funciona com qualquer implementação:
+pedido.fecharPedido(new CartaoCredito("1234"), 100.0);
+pedido.fecharPedido(new PIX("chave@pix"), 100.0);
+pedido.fecharPedido(new PagamentoPix("chave-qr"), 100.0);</code></pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Botão Voltar -->
+        <div class="nav-buttons">
+            <a href="/revisao/carrinho" class="btn-secondary">← Voltar ao Carrinho</a>
+        </div>
+
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p><strong>💳 Pagamento - Duke Revisão | Strategy Pattern em Ação</strong></p>
+    </footer>
+
+    <script src="/js/pagamento.js"></script>
+</body>
+</html>

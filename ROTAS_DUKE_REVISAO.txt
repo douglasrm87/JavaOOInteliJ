@@ -1,0 +1,423 @@
+/**
+ * 📚 GUIA DE ROTAS - DUKE REVISÃO
+ * 
+ * Este arquivo documenta todas as rotas disponíveis no módulo educacional
+ * Duke Revisão para facilitar navegação e aprendizado.
+ */
+
+// ═════════════════════════════════════════════════════════════════════════════
+// 🌐 ROTAS HTTP DO CONTROLLER
+// ═════════════════════════════════════════════════════════════════════════════
+
+// Padrão Base: http://localhost:8080/revisao/[rota]
+
+
+// ═════════════════════════════════════════════════════════════════════════════
+// 📄 PÁGINAS EDUCACIONAIS (GET)
+// ═════════════════════════════════════════════════════════════════════════════
+
+GET /revisao/inicio
+├─ Retorna: revisao/index.html
+├─ Descrição: Página inicial do módulo Duke Revisão
+├─ O que mostra:
+│  ├─ Visão geral do projeto
+│  ├─ Grid com 5 operações (Produtos, Carrinho, Pagamento, Conceitos, Diagrama)
+│  ├─ Seção de arquitetura (4 componentes principais)
+│  └─ Links de navegação
+└─ Conceitos: MVC, Views, Thymeleaf
+
+
+GET /revisao/produtos
+├─ Retorna: revisao/produtos.html
+├─ Descrição: Catálogo de produtos (Camisetas)
+├─ O que mostra:
+│  ├─ Grid responsivo com 4 camisetas
+│  ├─ Cada produto mostra:
+│  │  ├─ Badge de novo/desconto
+│  │  ├─ Emoji (imagem)
+│  │  ├─ Nome
+│  │  ├─ Descrição
+│  │  ├─ Especificações (tamanho, cor)
+│  │  ├─ Preço
+│  │  ├─ Botão "Adicionar" (chama produtos.js)
+│  │  └─ Conceito educacional
+│  └─ Código exemplo mostrando herança (Produto → Camisa)
+├─ Conceitos: Herança, Polimorfismo, Agregação
+└─ Interage com: localStorage (salva carrinho), produtos.js
+
+
+GET /revisao/carrinho
+├─ Retorna: revisao/carrinho.html
+├─ Descrição: Visualiza itens adicionados ao carrinho
+├─ O que mostra:
+│  ├─ SE carrinho vazio:
+│  │  ├─ Mensagem "Seu carrinho está vazio"
+│  │  └─ Botão "Continuar Comprando"
+│  └─ SE carrinho com itens:
+│     ├─ Tabela com colunas:
+│     │  ├─ Produto
+│     │  ├─ Tamanho
+│     │  ├─ Preço
+│     │  └─ Ação (Remover)
+│     ├─ Resumo:
+│     │  ├─ Quantidade de itens
+│     │  ├─ Subtotal (Streams: .mapToDouble().sum())
+│     │  ├─ Frete (R$ 10,00)
+│     │  └─ Total
+│     ├─ Botões de ação:
+│     │  ├─ Continuar Comprando
+│     │  ├─ Limpar Carrinho
+│     │  └─ Prosseguir Pagamento
+│     └─ Seção educacional explicando Streams
+├─ Conceitos: Agregação, Streams API, Coleções
+└─ Interage com: localStorage, carrinho.js
+
+
+GET /revisao/pagamento
+├─ Retorna: revisao/pagamento.html
+├─ Descrição: Seleciona método de pagamento
+├─ O que mostra:
+│  ├─ Display do valor total a pagar
+│  ├─ 3 Cards de métodos de pagamento:
+│  │  │
+│  │  ├─ 💳 CartaoCredito (Implementação 1)
+│  │  │  ├─ Features: Seguro, Parcelado, Instantâneo
+│  │  │  ├─ Form com campos:
+│  │  │  │  ├─ Número de Cartão
+│  │  │  │  ├─ Validade
+│  │  │  │  └─ CVV
+│  │  │  └─ Botão "Pagar com Cartão"
+│  │  │
+│  │  ├─ 📱 PIX (Implementação 2)
+│  │  │  ├─ Features: Sem taxa, Instantâneo, 24/7
+│  │  │  ├─ Form com campo:
+│  │  │  │  └─ Chave PIX
+│  │  │  └─ Botão "Pagar com PIX"
+│  │  │
+│  │  └─ 📲 PagamentoPix (Implementação 3) ⭐ RECOMENDADO
+│  │     ├─ Features: QR Code, Mais Seguro, Moderno
+│  │     ├─ Form com campo:
+│  │     │  └─ Chave PIX
+│  │     ├─ Badge "Recomendado"
+│  │     └─ Botão "Pagar com PIX + QR" (destaque em ouro)
+│  │
+│  └─ Seção educacional explicando Strategy Pattern
+│     ├─ Mostra 4 exemplos de código:
+│     │  ├─ 1. Definição da interface
+│     │  ├─ 2. Implementação CartaoCredito
+│     │  ├─ 3. Implementação PIX
+│     │  └─ 4. Uso polimórfico
+│     └─ Explica por que é um bom padrão
+├─ Conceitos: Strategy Pattern, Polimorfismo, Interfaces
+└─ Interage com: pagamento.js, POST /revisao/processar-pagamento
+
+
+GET /revisao/conceitos
+├─ Retorna: revisao/conceitos.html
+├─ Descrição: Explica 8 conceitos fundamentais de POO
+├─ Conceitos Explicados:
+│  ├─ 1️⃣ Encapsulamento (private/public, getters/setters)
+│  ├─ 2️⃣ Herança (extends, super, @Override)
+│  ├─ 3️⃣ Polimorfismo (interfaces, múltiplas formas)
+│  ├─ 4️⃣ Abstração (classes abstratas, interfaces)
+│  ├─ 5️⃣ Composição (tem um / has a)
+│  ├─ 6️⃣ Agregação (referencia / has a fraco)
+│  ├─ 7️⃣ Collections API (List, Set, Map)
+│  └─ 8️⃣ Streams API (map, filter, reduce)
+├─ Para cada conceito:
+│  ├─ Explicação clara
+│  ├─ Exemplo com e sem o conceito
+│  ├─ Código demonstrando
+│  └─ Relação com o projeto Duke Revisão
+└─ Conceitos: Todos os 8 pilares de POO
+
+
+GET /revisao/diagrama
+├─ Retorna: revisao/diagrama.html
+├─ Descrição: Visualiza arquitetura em diagrama UML
+├─ O que mostra:
+│  ├─ Diagrama UML em ASCII art com:
+│  │  ├─ Interfaces (MetodoPagamento)
+│  │  ├─ Implementações (CartaoCredito, PIX, PagamentoPix)
+│  │  ├─ Modelo de dados (Produto, Camisa)
+│  │  ├─ Enum (StatusPedido)
+│  │  ├─ Serviços (Carrinho, Pedido)
+│  │  ├─ Exceções (PagamentoException)
+│  │  ├─ Fluxo de dados (MVC)
+│  │  └─ Relacionamentos (herança, composição, agregação)
+│  └─ Legenda explicando símbolos (→, ◆, ◇, etc)
+└─ Conceitos: Arquitetura, Design Patterns, UML
+
+
+// ═════════════════════════════════════════════════════════════════════════════
+// 🔄 ROTAS DE AÇÃO (POST)
+// ═════════════════════════════════════════════════════════════════════════════
+
+POST /revisao/adicionar-produto
+├─ Parametros:
+│  ├─ nome: String (ex: "Camisa Azul")
+│  ├─ preco: double (ex: 89.90)
+│  └─ tamanho: String (ex: "M")
+├─ Processamento:
+│  ├─ Recupera carrinho do localStorage
+│  ├─ Verifica se produto já existe (por nome + tamanho)
+│  ├─ Se existe: incrementa quantidade
+│  ├─ Se não existe: adiciona novo item
+│  ├─ Salva atualizado no localStorage
+│  └─ Retorna resposta JSON com sucesso
+├─ Frontend Response:
+│  ├─ Exibe notificação "✅ Produto adicionado!"
+│  ├─ Atualiza badge de quantidade no menu
+│  └─ Mantém usuário na página (não redireciona)
+└─ Conceitos: AJAX, JSON, localStorage, Agregação
+
+
+POST /revisao/processar-pagamento
+├─ Parametros:
+│  ├─ metodo: String (cartao | pix | pix_qrcode)
+│  ├─ valor: double (valor total a pagar)
+│  ├─ [dados de pagamento conforme método selecionado]
+│  │
+│  ├─ Se metodo = "cartao":
+│  │  ├─ numeroCarta: String
+│  │  ├─ validade: String
+│  │  └─ cvv: String
+│  │
+│  ├─ Se metodo = "pix":
+│  │  └─ chavePix: String
+│  │
+│  └─ Se metodo = "pix_qrcode":
+│     └─ chavePix: String
+│
+├─ Processamento (Backend - Java):
+│  ├─ 1. Valida valor (deve ser > 0)
+│  ├─ 2. Cria objeto Pedido
+│  ├─ 3. Cria switch para determinar qual MetodoPagamento usar:
+│  │  ├─ case "cartao": new CartaoCredito()
+│  │  ├─ case "pix": new PIX()
+│  │  └─ case "pix_qrcode": new PagamentoPix()
+│  ├─ 4. Chama pedido.fecharPedido(metodo, valor)
+│  │  │
+│  │  └─ 🎭 POLIMORFISMO OCORRE AQUI:
+│  │     └─ metodo.processar(valor) executa a versão CORRETA
+│  │        em tempo de execução!
+│  │
+│  ├─ 5. Se sucesso:
+│  │  ├─ StatusPedido muda para PAGO
+│  │  ├─ Carrinho é limpo
+│  │  └─ Redireciona para /revisao/confirmacao
+│  │
+│  └─ Se erro (PagamentoException):
+│     ├─ StatusPedido muda para CANCELADO
+│     ├─ Exibe mensagem de erro
+│     └─ Permanece na página de pagamento
+│
+├─ Conceitos: 
+│  ├─ Strategy Pattern (escolher algoritmo em runtime)
+│  ├─ Polimorfismo (chamada polimórfica: metodo.processar())
+│  ├─ Exception Handling (try-catch PagamentoException)
+│  ├─ State Pattern (StatusPedido: PAGO/CANCELADO)
+│  └─ Composição (Pedido contém Carrinho)
+│
+└─ Response:
+   ├─ Se sucesso: redirecionamento para /revisao/confirmacao
+   └─ Se erro: resposta JSON com mensagem de erro
+
+
+GET /revisao/confirmacao
+├─ Retorna: revisao/confirmacao.html
+├─ Descrição: Exibe confirmação de pedido realizado
+├─ O que mostra:
+│  ├─ ✅ Ícone grande de sucesso com animação
+│  ├─ Mensagem "Pagamento Aprovado!"
+│  ├─ Status "PAGO" com badge verde
+│  ├─ Resumo do pedido:
+│  │  ├─ Número do pedido (gerado automaticamente)
+│  │  ├─ Data/Hora
+│  │  ├─ Método de pagamento usado
+│  │  └─ Status
+│  ├─ Lista de produtos comprados:
+│  │  ├─ Produto + Tamanho + Preço
+│  │  ├─ Subtotal
+│  │  ├─ Frete
+│  │  └─ Total
+│  ├─ Informações de entrega:
+│  │  ├─ Prazo estimado (5-7 dias úteis)
+│  │  ├─ Forma de entrega (Sedex)
+│  │  └─ Aviso sobre rastreamento
+│  ├─ Seção educacional mostrando conceitos usados:
+│  │  ├─ Polimorfismo
+│  │  ├─ Strategy Pattern
+│  │  ├─ Composição
+│  │  └─ State Pattern
+│  └─ Botões de ação:
+│     ├─ "Continuar Comprando" → /revisao/produtos
+│     ├─ "Voltar ao Início" → /revisao/inicio
+│     └─ "Ir para Home" → /
+│
+└─ Conceitos: MVC, Views, State Pattern
+
+
+// ═════════════════════════════════════════════════════════════════════════════
+// 📊 FLUXO DE NAVEGAÇÃO COMPLETO
+// ═════════════════════════════════════════════════════════════════════════════
+
+Usuário começa em:
+/home (página home.html)
+    │
+    ├─► Clica em "Duke Revisão" ou "Acessar Duke"
+    │
+    ↓
+/revisao/inicio (index.html)
+    │
+    ├─► Opção 1: "Produtos"
+    │   ↓
+    │   /revisao/produtos (produtos.html)
+    │   │
+    │   ├─► Clica "Adicionar" em um produto
+    │   │   └─► POST /revisao/adicionar-produto (JavaScript)
+    │   │       └─► Notificação visual + localStorage
+    │   │
+    │   └─► Clica "Carrinho"
+    │       ↓
+    │       /revisao/carrinho (carrinho.html)
+    │       │
+    │       ├─► Clica "Continuar Comprando"
+    │       │   └─► Volta para /revisao/produtos
+    │       │
+    │       ├─► Clica "Limpar Carrinho"
+    │       │   └─► Limpa localStorage
+    │       │
+    │       └─► Clica "Prosseguir Pagamento"
+    │           ↓
+    │           /revisao/pagamento (pagamento.html)
+    │           │
+    │           ├─► Seleciona método de pagamento
+    │           ├─► Preenche dados (conforme método)
+    │           └─► Clica "Pagar"
+    │               │
+    │               └─► POST /revisao/processar-pagamento
+    │                   │
+    │                   └─► 🎭 POLIMORFISMO: Executa metodo.processar()
+    │                       (CartaoCredito | PIX | PagamentoPix)
+    │                   │
+    │                   └─► Redirecionamento:
+    │                       ↓
+    │                       /revisao/confirmacao (confirmacao.html)
+    │                       │
+    │                       └─► FIM: Pedido realizado! ✅
+    │
+    ├─► Opção 2: "Conceitos"
+    │   ↓
+    │   /revisao/conceitos (conceitos.html)
+    │   │
+    │   └─► Lê explicações dos 8 conceitos POO
+    │
+    ├─► Opção 3: "Diagrama"
+    │   ↓
+    │   /revisao/diagrama (diagrama.html)
+    │   │
+    │   └─► Visualiza arquitetura UML
+    │
+    └─► Opção 4: "Voltar"
+        ↓
+        /home (volta para página inicial)
+
+
+// ═════════════════════════════════════════════════════════════════════════════
+// 🔐 TECNOLOGIAS E PADRÕES UTILIZADOS
+// ═════════════════════════════════════════════════════════════════════════════
+
+BACKEND:
+├─ Java 21
+├─ Spring Boot 3.x
+├─ Spring MVC (Controllers)
+├─ HttpSession (carrinho entre requisições)
+├─ Thymeleaf (templates HTML)
+└─ Design Patterns: Strategy, Template Method, State, Composer, MVC
+
+FRONTEND:
+├─ HTML5 (semantic markup)
+├─ CSS3 (Grid, Flexbox, responsivo)
+├─ JavaScript ES6+ (localStorage, eventos, validação)
+├─ localStorage API (persistência de carrinho)
+├─ Fetch API (requisições AJAX)
+└─ Animations & Transitions
+
+DATABASE:
+└─ localStorage (cliente) - para demonstração educacional
+
+
+// ═════════════════════════════════════════════════════════════════════════════
+// 📚 REFERÊNCIA RÁPIDA
+// ═════════════════════════════════════════════════════════════════════════════
+
+URL Base: http://localhost:8080/revisao/
+
+Rotas:
+├─ /inicio                   → Home do módulo
+├─ /produtos                 → Catálogo
+├─ /carrinho                 → Carrinho
+├─ /pagamento                → Seleção de pagamento
+├─ /conceitos                → Explicação de POO
+├─ /diagrama                 → Arquitetura UML
+├─ /confirmacao              → Sucesso
+├─ /adicionar-produto (POST) → Adiciona ao carrinho
+└─ /processar-pagamento (POST) → Processa pagamento
+
+Estados do Pedido (enum StatusPedido):
+├─ AGUARDANDO_PAGAMENTO (hourglass)
+├─ PAGO (checkmark)
+├─ ENVIADO (shipped)
+├─ ENTREGUE (package)
+└─ CANCELADO (x mark)
+
+Métodos de Pagamento (Strategy Pattern):
+├─ CartaoCredito (interface implementada)
+├─ PIX (interface implementada)
+└─ PagamentoPix (interface implementada)
+
+Classes Principais:
+├─ Produto (abstrata)
+│  └─ Camisa (concreta)
+├─ MetodoPagamento (interface)
+│  ├─ CartaoCredito
+│  ├─ PIX
+│  └─ PagamentoPix
+├─ Carrinho (agregação)
+├─ Pedido (composição)
+└─ DukeRevisaoController (Spring MVC)
+
+
+// ═════════════════════════════════════════════════════════════════════════════
+// ✨ MAGIC MOMENT - POLIMORFISMO EM AÇÃO
+// ═════════════════════════════════════════════════════════════════════════════
+
+Na rota POST /revisao/processar-pagamento:
+
+    // O usuário escolhe qualquer um dos 3 métodos
+    MetodoPagamento metodo = switch(metodoSelecionado) {
+        case "cartao" -> new CartaoCredito();
+        case "pix" -> new PIX();
+        case "pix_qrcode" -> new PagamentoPix();
+    };
+    
+    // MAGIC HAPPENS HERE! 🎭
+    pedido.fecharPedido(metodo, valor);
+    
+    // Dentro de fecharPedido:
+    // metodo.processar(valor) → QUAL SERÁ EXECUTADA?
+    //
+    // JVM sabe em tempo de execução qual objeto é!
+    // Se CartaoCredito → executa CartaoCredito.processar()
+    // Se PIX → executa PIX.processar()
+    // Se PagamentoPix → executa PagamentoPix.processar()
+    //
+    // Isso é POLIMORFISMO! 🎉
+    // Mesmo chamado, comportamentos diferentes.
+
+// ═════════════════════════════════════════════════════════════════════════════
+
+Desenvolvido com ❤️ para educação em POO
+Duke Revisão v1.0 | Spring Boot 3.x | Java 21
+

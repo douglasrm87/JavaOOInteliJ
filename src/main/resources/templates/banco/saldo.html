@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Saldo - Caixa Eletrônico</title>
+    <link rel="stylesheet" type="text/css" href="/css/banco.css" />
+</head>
+<body>
+    <!-- Navegação -->
+    <nav>
+        <a href="/home">Home</a>
+        <a href="/banco/frentecaixaeletronico">Voltar</a>
+        <a href="/logout">Sair</a>
+    </nav>
+
+    <!-- Container do ATM -->
+    <div class="atm-container">
+        <!-- Cabeçalho -->
+        <div class="atm-header">
+            <h1>💰 Consultar Saldo</h1>
+            <p>Verifique o saldo da sua conta</p>
+        </div>
+
+        <!-- Corpo -->
+        <div class="atm-body">
+            <!-- Mensagens de status -->
+            <div th:if="${erro}" class="error-message" th:text="${erro}"></div>
+            <div th:if="${mensagem}" class="success-message" th:text="${mensagem}"></div>
+
+            <!-- Se é a primeira vez, mostrar formulário de consulta -->
+            <div th:if="${!exibindo}">
+                <form th:action="@{/banco/saldo}" method="post">
+                    <!-- Dados da Conta -->
+                    <div class="form-section">
+                        <h2>Identificação da Conta</h2>
+
+                        <div class="form-group">
+                            <label for="numeroConta">Número da Conta:</label>
+                            <input 
+                                type="text" 
+                                id="numeroConta" 
+                                name="numeroConta" 
+                                placeholder="Ex: 001234"
+                                required
+                            />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="agencia">Agência:</label>
+                            <input 
+                                type="text" 
+                                id="agencia" 
+                                name="agencia" 
+                                placeholder="Ex: 0001"
+                                required
+                            />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="cpf">CPF:</label>
+                            <input 
+                                type="text" 
+                                id="cpf" 
+                                name="cpf" 
+                                placeholder="Ex: 123.456.789-00"
+                                required
+                            />
+                        </div>
+                    </div>
+
+                    <!-- Botões -->
+                    <div class="form-buttons">
+                        <button type="submit" class="atm-button confirm">💵 Consultar Saldo</button>
+                        <a href="/banco/frentecaixaeletronico" class="atm-button back" style="text-decoration: none; display: flex; align-items: center; justify-content: center;">← Voltar</a>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Se exibindo saldo -->
+            <div th:if="${exibindo}">
+                <!-- Informações da Conta -->
+                <div class="account-info">
+                    <div class="info-row">
+                        <span class="info-label">Titular:</span>
+                        <span class="info-value">[[${nomeCliente}]]</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Conta:</span>
+                        <span class="info-value">[[${numeroConta}]]</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Agência:</span>
+                        <span class="info-value">[[${agencia}]]</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Data/Hora:</span>
+                        <span class="info-value" id="dataHoraAtual"></span>
+                    </div>
+                </div>
+
+                <!-- Saldo Atual - Destaque -->
+                <div class="balance-display success">
+                    <div class="label">SALDO ATUAL</div>
+                    <div class="value">R$ [[${saldo}]]</div>
+                </div>
+
+                <!-- Detalhes Adicionais -->
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1.5rem 0;">
+                    <div class="info-card">
+                        <strong>Tipo de Conta:</strong>
+                        <span>Corrente</span>
+                    </div>
+                    <div class="info-card">
+                        <strong>Status:</strong>
+                        <span style="color: var(--cor-sucesso);">✓ Ativa</span>
+                    </div>
+                </div>
+
+                <!-- Dicas de Segurança -->
+                <div style="margin-top: 1.5rem; padding: 1rem; background: #fff3e0; border-radius: 6px; border-left: 4px solid var(--cor-alerta);">
+                    <strong style="color: #e65100;">⚠️ Dicas de Segurança:</strong>
+                    <ul style="margin: 0.5rem 0 0 1rem; color: #666; font-size: 0.9rem;">
+                        <li>Não compartilhe seus dados bancários com terceiros</li>
+                        <li>Use este ATM apenas em locais seguros</li>
+                        <li>Retire seu cartão e comprovante após a transação</li>
+                    </ul>
+                </div>
+
+                <!-- Botões de Ação -->
+                <div class="form-buttons" style="margin-top: 1.5rem;">
+                    <form th:action="@{/banco/saldo}" method="post" style="flex: 1;">
+                        <button type="submit" class="atm-button confirm" style="width: 100%;">🔄 Atualizar Saldo</button>
+                    </form>
+                    <a href="/banco/frentecaixaeletronico" class="atm-button back" style="text-decoration: none; display: flex; align-items: center; justify-content: center; flex: 1;">← Voltar</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Script para atualizar data e hora -->
+    <script>
+        function atualizarDataHora() {
+            const data = new Date();
+            const dia = String(data.getDate()).padStart(2, '0');
+            const mes = String(data.getMonth() + 1).padStart(2, '0');
+            const ano = data.getFullYear();
+            const horas = String(data.getHours()).padStart(2, '0');
+            const minutos = String(data.getMinutes()).padStart(2, '0');
+            const dataFormatada = `${dia}/${mes}/${ano} às ${horas}:${minutos}`;
+            document.getElementById('dataHoraAtual').textContent = dataFormatada;
+        }
+        atualizarDataHora();
+    </script>
+
+    <!-- Footer -->
+    <footer>
+        <p><strong>Consulta de Saldo - Sistema Bancário Educacional</strong></p>
+    </footer>
+</body>
+</html>

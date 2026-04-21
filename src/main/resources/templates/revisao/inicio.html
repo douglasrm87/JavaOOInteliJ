@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${titulo}">Duke Revisão - Início</title>
+    <link rel="stylesheet" type="text/css" href="/css/base.css" />
+    <link rel="stylesheet" type="text/css" href="/css/revisao/revisao.css" />
+</head>
+<body>
+    <nav>
+        <a href="/home">Home</a>
+        <a href="/revisao/inicio">Duke Revisão</a>
+        <a href="/revisao/conceitos">📚 Conceitos</a>
+        <a href="/logout">Sair</a>
+    </nav>
+
+    <div class="container" style="max-width: 1000px; margin: 2rem auto;">
+        <header>
+            <h1 th:text="${titulo}">🏪 Duke Revisão - Início</h1>
+            <p th:text="${descricao}">Bem-vindo à página inicial do módulo de revisão.</p>
+        </header>
+
+        <main>
+            <section>
+                <h2>Bem-vindo(a)!</h2>
+                <p>Use o menu para navegar entre os tópicos: produtos, carrinho, pagamento e conceitos.</p>
+                <div style="margin-top:1rem;">
+                    <a href="/revisao/produtos" class="btn-primary">Ver Produtos</a>
+                    <a href="/revisao/carrinho" class="btn-primary">Meu Carrinho</a>
+                    <a href="/revisao/pagamento" class="btn-primary">Pagamento</a>
+                </div>
+            </section>
+        </main>
+
+        <footer style="margin-top:2rem;">
+            <p><strong>🏪 Duke Revisão</strong> — Aprendizado prático de POO.</p>
+        </footer>
+    </div>
+
+    <script src="/js/revisao.js"></script>
+</body>
+</html>

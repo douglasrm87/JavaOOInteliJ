@@ -1,0 +1,285 @@
+/**
+ * 🛒 CARRINHO.CSS - Estilos da Página de Carrinho
+ */
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+/* CONTAINER DO CARRINHO */
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+.carrinho-container {
+    background: white;
+    border-radius: 12px;
+    padding: 3rem;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    min-height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.carrinho-vazio {
+    width: 100%;
+}
+
+.empty-icon {
+    font-size: 5rem;
+    margin-bottom: 1rem;
+    opacity: 0.5;
+}
+
+.carrinho-vazio h2 {
+    color: #666;
+    margin: 1rem 0;
+}
+
+.carrinho-vazio p {
+    color: #999;
+    margin-bottom: 1.5rem;
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+/* TABELA DO CARRINHO */
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+.carrinho-tabela {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    margin-bottom: 2rem;
+}
+
+.carrinho-tabela table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.carrinho-tabela thead {
+    background: linear-gradient(135deg, #6200EA 0%, #03DAC6 100%);
+    color: white;
+}
+
+.carrinho-tabela th {
+    padding: 1.2rem;
+    text-align: left;
+    font-weight: 600;
+}
+
+.carrinho-tabela td {
+    padding: 1.2rem;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.carrinho-tabela tbody tr:hover {
+    background: #f9f9f9;
+}
+
+.carrinho-tabela tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+/* RESUMO DO CARRINHO */
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+.resumo-container {
+    background: white;
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    margin-bottom: 2rem;
+}
+
+.resumo-box h3 {
+    color: #6200EA;
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+    font-size: 1.3rem;
+}
+
+.resumo-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.resumo-item span {
+    color: #666;
+    font-weight: 500;
+}
+
+.resumo-item strong {
+    color: #333;
+    font-size: 1.1rem;
+}
+
+.resumo-item.total {
+    background: linear-gradient(135deg, #f0f4ff 0%, #f8f2ff 100%);
+    border-bottom: none;
+    border-radius: 8px;
+    margin-top: 0.5rem;
+    font-size: 1.2rem;
+}
+
+.resumo-item.total strong {
+    color: #6200EA;
+    font-size: 1.5rem;
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+/* AÇÕES */
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+.acoes-container {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 2rem 0;
+}
+
+.btn-secondary,
+.btn-danger,
+.btn-primary {
+    padding: 0.9rem 1.8rem;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.btn-secondary {
+    background: #f0f0f0;
+    color: #6200EA;
+    border: 2px solid #6200EA;
+}
+
+.btn-secondary:hover {
+    background: #6200EA;
+    color: white;
+}
+
+.btn-danger {
+    background: #CF6679;
+    color: white;
+}
+
+.btn-danger:hover {
+    background: #B71C1C;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #6200EA 0%, #8c3dff 100%);
+    color: white;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 16px rgba(98, 0, 234, 0.3);
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+/* CONCEITO SECTION */
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+.concept-section {
+    background: #f8f8f8;
+    padding: 2rem;
+    border-radius: 8px;
+    margin: 2rem 0;
+    border-left: 4px solid #6200EA;
+}
+
+.concept-section h2 {
+    color: #6200EA;
+    margin-top: 0;
+}
+
+.code-example {
+    background: #1e1e1e;
+    padding: 1.5rem;
+    border-radius: 6px;
+    overflow-x: auto;
+    margin-top: 1rem;
+}
+
+.code-example pre {
+    margin: 0;
+    font-family: 'Courier New', monospace;
+    color: #d4d4d4;
+    font-size: 0.85rem;
+    line-height: 1.5;
+}
+
+.code-example code {
+    color: #d4d4d4;
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+/* RESPONSIVIDADE */
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+@media (max-width: 768px) {
+    .carrinho-container {
+        padding: 2rem 1rem;
+        min-height: 250px;
+    }
+
+    .empty-icon {
+        font-size: 3.5rem;
+    }
+
+    .carrinho-tabela th,
+    .carrinho-tabela td {
+        padding: 0.8rem;
+        font-size: 0.9rem;
+    }
+
+    .acoes-container {
+        flex-direction: column;
+    }
+
+    .btn-secondary,
+    .btn-danger,
+    .btn-primary {
+        width: 100%;
+    }
+}
+
+@media (max-width: 600px) {
+    .carrinho-container {
+        padding: 1.5rem 1rem;
+    }
+
+    .carrinho-tabela {
+        font-size: 0.85rem;
+    }
+
+    .carrinho-tabela th,
+    .carrinho-tabela td {
+        padding: 0.6rem;
+    }
+
+    .resumo-item {
+        padding: 0.8rem;
+    }
+
+    .concept-section {
+        padding: 1.5rem 1rem;
+    }
+
+    .code-example {
+        padding: 1rem;
+    }
+
+    .code-example pre {
+        font-size: 0.75rem;
+    }
+}

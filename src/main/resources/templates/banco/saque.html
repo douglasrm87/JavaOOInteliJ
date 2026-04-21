@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Saque - Caixa Eletrônico</title>
+    <link rel="stylesheet" type="text/css" href="/css/banco.css" />
+</head>
+<body>
+    <!-- Navegação -->
+    <nav>
+        <a href="/home">Home</a>
+        <a href="/banco/frentecaixaeletronico">Voltar</a>
+        <a href="/logout">Sair</a>
+    </nav>
+
+    <!-- Container do ATM -->
+    <div class="atm-container">
+        <!-- Cabeçalho -->
+        <div class="atm-header">
+            <h1>💸 Realizar Saque</h1>
+            <p>Digite os dados abaixo para efetuar um saque</p>
+        </div>
+
+        <!-- Corpo -->
+        <div class="atm-body">
+            <!-- Mensagens de status -->
+            <div th:if="${mensagem}" class="success-message" th:text="${mensagem}"></div>
+            <div th:if="${erro}" class="error-message" th:text="${erro}"></div>
+
+            <!-- Formulário de Saque -->
+            <form th:action="@{/banco/saque}" method="post">
+                <!-- Dados da Conta -->
+                <div class="form-section">
+                    <h2>Dados da Conta</h2>
+
+                    <div class="form-group">
+                        <label for="numeroConta">Número da Conta:</label>
+                        <input 
+                            type="text" 
+                            id="numeroConta" 
+                            name="numeroConta" 
+                            placeholder="Ex: 001234"
+                            required
+                        />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="agencia">Agência:</label>
+                        <input 
+                            type="text" 
+                            id="agencia" 
+                            name="agencia" 
+                            placeholder="Ex: 0001"
+                            required
+                        />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="cpf">CPF:</label>
+                        <input 
+                            type="text" 
+                            id="cpf" 
+                            name="cpf" 
+                            placeholder="Ex: 123.456.789-00"
+                            required
+                        />
+                    </div>
+                </div>
+
+                <!-- Valor do Saque -->
+                <div class="form-section">
+                    <h2>Valor do Saque</h2>
+
+                    <div class="form-group">
+                        <label for="valor">Valor a Sacar (R$):</label>
+                        <input 
+                            type="number" 
+                            id="valor" 
+                            name="valor" 
+                            step="0.01"
+                            min="0.01"
+                            placeholder="0.00"
+                            required
+                        />
+                    </div>
+
+                    <div class="warning-message">
+                        ⚠️ <strong>Limite:</strong> O valor máximo para saque é R$ 5.000,00 por dia.
+                    </div>
+                </div>
+
+                <!-- Botões -->
+                <div class="form-buttons">
+                    <button type="submit" class="atm-button confirm">✓ Confirmar Saque</button>
+                    <a href="/banco/frentecaixaeletronico" class="atm-button back" style="text-decoration: none; display: flex; align-items: center; justify-content: center;">← Cancelar</a>
+                </div>
+            </form>
+
+            <!-- Informações úteis -->
+            <div style="margin-top: 1.5rem; padding: 1rem; background: #f9fbfd; border-radius: 6px; border-left: 4px solid #00a8cc;">
+                <strong style="color: #005baa;">💡 Informações Importantes:</strong>
+                <ul style="margin: 0.5rem 0 0 1rem; color: #666;">
+                    <li>Saques são processados em tempo real</li>
+                    <li>O comprovante será exibido após a confirmação</li>
+                    <li>Você receberá as notas em espécie</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p><strong>Operação de Saque - Sistema Bancário Educacional</strong></p>
+    </footer>
+</body>
+</html>

@@ -1,113 +1,240 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
-  <head>
-    <title>Página de Login</title>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org" lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema Bancário | Login</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
     <style>
-      body {
-        background-color: #f3f4f6;
-        font-family: Arial, sans-serif;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-        margin: 0;
-      }
+        :root {
+            --primary: #0052cc;
+            --primary-dark: #0747a6;
+            --bg-gradient: linear-gradient(135deg, #091e42 0%, #0052cc 100%);
+            --text-main: #172b4d;
+            --text-light: #6b778c;
+            --white: #ffffff;
+            --error-bg: #fff1f0;
+            --error-text: #d32f2f;
+            --border: #dfe1e6;
+            --shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
 
-      .login-container {
-        background-color: #ffffff;
-        padding: 2em;
-        border-radius: 10px;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        width: 100%;
-        max-width: 400px;
-        text-align: center;
-      }
+        * {
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
 
-      .login-container h1 {
-        margin-bottom: 1em;
-        color: #333333;
-      }
+        body {
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: var(--bg-gradient);
+            color: var(--text-main);
+        }
 
-      .login-container label {
-        display: block;
-        margin-bottom: 0.5em;
-        color: #555555;
-        font-weight: bold;
-        text-align: left;
-      }
+        .login-wrapper {
+            width: 100%;
+            max-width: 420px;
+            padding: 20px;
+        }
 
-      .login-container input[type="text"],
-      .login-container input[type="password"] {
-        width: 100%;
-        padding: 0.8em;
-        margin-bottom: 1em;
-        border: 1px solid #cccccc;
-        border-radius: 5px;
-        font-size: 1em;
-      }
+        .login-container {
+            background: var(--white);
+            border-radius: 16px;
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            animation: fadeIn 0.6s ease-out;
+        }
 
-      .login-container input[type="submit"] {
-        background-color: #4CAF50;
-        color: white;
-        border: none;
-        padding: 0.8em 1.5em;
-        border-radius: 5px;
-        font-size: 1em;
-        cursor: pointer;
-        transition: background-color 0.3s ease;
-      }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
 
-      .login-container input[type="submit"]:hover {
-        background-color: #45a049;
-      }
+        .login-header {
+            padding: 40px 30px 20px;
+            text-align: center;
+        }
 
-      .login-container .error-message {
-        color: #ff0000;
-        margin-bottom: 1em;
-      }
+        .logo-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .login-header h1 {
+            margin: 0;
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+        }
+
+        .login-header p {
+            color: var(--text-light);
+            margin: 8px 0 0;
+            font-size: 0.95rem;
+        }
+
+        .login-form {
+            padding: 10px 40px 40px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            color: var(--text-main);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.2s ease;
+            background: #fafbfc;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--primary);
+            background: var(--white);
+            box-shadow: 0 0 0 4px rgba(0, 82, 204, 0.1);
+        }
+
+        button {
+            width: 100%;
+            padding: 14px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s ease, transform 0.1s;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background: var(--primary-dark);
+        }
+
+        button:active {
+            transform: scale(0.98);
+        }
+
+        /* Mensagens de Alerta */
+        .alert {
+            padding: 12px 16px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .alert-error {
+            background: var(--error-bg);
+            color: var(--error-text);
+            border: 1px solid rgba(211, 47, 47, 0.2);
+        }
+
+        /* Divisor */
+        .divider {
+            display: flex;
+            align-items: center;
+            text-align: center;
+            margin: 25px 0;
+            color: var(--text-light);
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .divider::before, .divider::after {
+            content: '';
+            flex: 1;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .divider:not(:empty)::before { margin-right: .75em; }
+        .divider:not(:empty)::after { margin-left: .75em; }
+
+        /* Info Box */
+        .info-box {
+            background: #f4f5f7;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+        }
+
+        .info-box code {
+            background: #ebecf0;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: bold;
+            color: var(--primary-dark);
+        }
+
+        @media (max-width: 400px) {
+            .login-form { padding: 10px 25px 30px; }
+        }
     </style>
-  </head>
-  <body>
-    <div class="login-container">
-      <h1>Login</h1>
-      <div th:if="${param.error}" class="error-message">
-        Usuário e senha inválidos.
-      </div>
-      <div th:if="${param.logout}" class="error-message">
-        Você deve executar logout.
-      </div>
-      <form th:action="@{/login}" method="post">
-        <label for="username">Usuário</label>
-        <input type="text" id="username" name="username" placeholder="Digite seu usuário" />
+</head>
+<body>
 
-        <label for="password">Senha</label>
-        <input type="password" id="password" name="password" placeholder="Digite sua senha" />
+    <div class="login-wrapper">
+        <div class="login-container">
+            <div class="login-header">
+                <span class="logo-icon">🏦</span>
+                <h1>Acesso ao Sistema</h1>
+                <p>Entre com suas credenciais bancárias</p>
+            </div>
 
-        <input type="submit" value="Entrar" />
-      </form>
-      <div class="alert-message">
-        <p>
-            <p>Ao digitar o usuário <strong style="color: red;">drm</strong> e a senha <strong style="color: red;">12345</strong> será redirecionado para página home.</p>
-            <p>Remover o <strong style="color: red;">:8081</strong> da URL deixando apenas o nome do servidor /home.</p>
-            <p>Ex.: https://ubiquitous-spork-jpvg6x9x63qxjw-8081.app.github.dev<strong>/home</strong></p>
-        </p>
-      </div>
-      <style>
-        .alert-message {
-          margin-top: 1em;
-          font-size: 0.9em;
-          color: #333333;
-        }
+            <div class="login-form">
+                <div th:if="${param.error}" class="alert alert-error">
+                    <span>⚠️</span> <strong>Usuário ou senha inválidos.</strong>
+                </div>
 
-        .alert-message a {
-          color: #007BFF;
-          text-decoration: none;
-        }
+                <div th:if="${param.logout}" class="alert" style="background: #e6f4ea; color: #1e7e34;">
+                    <span>✅</span> <strong>Sessão encerrada com sucesso.</strong>
+                </div>
 
-        .alert-message a:hover {
-          text-decoration: underline;
-        }
-      </style>
+                <form th:action="@{/login}" method="post">
+                    <div class="form-group">
+                        <label for="username">Usuário</label>
+                        <input type="text" id="username" name="username" placeholder="Seu nome de usuário" required autofocus>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password">Senha</label>
+                        <input type="password" id="password" name="password" placeholder="••••••••" required>
+                    </div>
+
+                    <button type="submit">Acessar Conta</button>
+                </form>
+
+                <div class="divider">ACESSO DE TESTE</div>
+
+                <div class="info-box">
+                    <div style="margin-bottom: 5px;">Usuário: <code>drm</code></div>
+                    <div>Senha: <code>12345</code></div>
+                </div>
+            </div>
+        </div>
     </div>
-  </body>
+
+</body>
 </html>

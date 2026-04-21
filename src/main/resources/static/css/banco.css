@@ -1,0 +1,451 @@
+/* ============================================
+   CSS ESPECÍFICO DO MÓDULO BANCÁRIO
+   ============================================ */
+
+@import url('/css/base.css');
+
+/* Estilos específicos do banco */
+
+.atm-container {
+    max-width: 500px;
+    margin: 2rem auto;
+    background: var(--cor-fundo-claro);
+    border-radius: 12px;
+    box-shadow: var(--sombra-forte);
+    overflow: hidden;
+}
+
+.atm-header {
+    background: linear-gradient(135deg, var(--cor-primaria) 0%, var(--cor-secundaria) 100%);
+    color: white;
+    padding: 2rem;
+    text-align: center;
+}
+
+.atm-header h1 {
+    color: white;
+    margin: 0;
+    font-size: 1.8rem;
+}
+
+.atm-header p {
+    color: #e0e0e0;
+    margin: 0.5rem 0 0 0;
+}
+
+.atm-body {
+    padding: 2rem;
+}
+
+.atm-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.atm-button {
+    padding: 1.2rem;
+    background: linear-gradient(135deg, var(--cor-primaria) 0%, var(--cor-secundaria) 100%);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.atm-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 16px rgba(0, 91, 170, 0.3);
+}
+
+.atm-button:active {
+    transform: translateY(0);
+}
+
+.atm-button.back {
+    background: var(--cor-fundo);
+    color: var(--cor-primaria);
+    border: 2px solid var(--cor-primaria);
+}
+
+.atm-button.back:hover {
+    background: var(--cor-primaria);
+    color: white;
+}
+
+.atm-button.cancel {
+    background: var(--cor-erro);
+}
+
+.atm-button.cancel:hover {
+    background: #d32f2f;
+    box-shadow: 0 6px 16px rgba(244, 67, 54, 0.3);
+}
+
+.atm-button.confirm {
+    background: var(--cor-sucesso);
+}
+
+.atm-button.confirm:hover {
+    background: #00a047;
+    box-shadow: 0 6px 16px rgba(0, 184, 84, 0.3);
+}
+
+.form-section {
+    background: var(--cor-fundo);
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+}
+
+.form-section h2 {
+    color: var(--cor-primaria);
+    margin-top: 0;
+}
+
+.form-section .form-group {
+    margin-bottom: 1rem;
+}
+
+.form-section label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--cor-primaria);
+    font-weight: 600;
+}
+
+.form-section input {
+    width: 100%;
+    padding: 0.75rem;
+    border: 2px solid var(--cor-borda);
+    border-radius: 4px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.form-section input:focus {
+    outline: none;
+    border-color: var(--cor-primaria);
+    box-shadow: 0 0 0 3px rgba(0, 91, 170, 0.1);
+}
+
+.form-section input[type="number"] {
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.account-info {
+    background: linear-gradient(135deg, var(--cor-primaria) 0%, var(--cor-secundaria) 100%);
+    color: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+}
+
+.account-info .info-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.account-info .info-row:last-child {
+    border-bottom: none;
+}
+
+.account-info .info-label {
+    font-weight: 600;
+    opacity: 0.9;
+}
+
+.account-info .info-value {
+    font-weight: 600;
+    text-align: right;
+}
+
+.balance-display {
+    background: var(--cor-fundo-claro);
+    border: 3px solid var(--cor-primaria);
+    padding: 1.5rem;
+    border-radius: 8px;
+    text-align: center;
+    margin: 1.5rem 0;
+}
+
+.balance-display .label {
+    color: var(--cor-texto-claro);
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+}
+
+.balance-display .value {
+    font-size: 2rem;
+    color: var(--cor-primaria);
+    font-weight: 700;
+}
+
+.balance-display.success {
+    border-color: var(--cor-sucesso);
+}
+
+.balance-display.success .value {
+    color: var(--cor-sucesso);
+}
+
+.balance-display.warning {
+    border-color: var(--cor-alerta);
+}
+
+.balance-display.warning .value {
+    color: var(--cor-alerta);
+}
+
+.transaction-list {
+    list-style: none;
+    padding: 0;
+    margin: 1rem 0;
+}
+
+.transaction-item {
+    background: var(--cor-fundo);
+    padding: 1rem;
+    border-radius: 6px;
+    margin-bottom: 0.75rem;
+    border-left: 4px solid var(--cor-primaria);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.transaction-item.deposit {
+    border-left-color: var(--cor-sucesso);
+}
+
+.transaction-item.withdraw {
+    border-left-color: var(--cor-alerta);
+}
+
+.transaction-item .type {
+    font-weight: 600;
+    color: var(--cor-primaria);
+}
+
+.transaction-item .amount {
+    font-weight: 700;
+    font-size: 1.1rem;
+}
+
+.transaction-item .amount.positive {
+    color: var(--cor-sucesso);
+}
+
+.transaction-item .amount.negative {
+    color: var(--cor-alerta);
+}
+
+.transaction-item .date {
+    color: var(--cor-texto-claro);
+    font-size: 0.85rem;
+}
+
+.success-message {
+    background: #e8f5e9;
+    color: #2e7d32;
+    padding: 1rem;
+    border-radius: 6px;
+    border-left: 4px solid var(--cor-sucesso);
+    margin: 1rem 0;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.success-message::before {
+    content: '✓';
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.error-message {
+    background: #ffebee;
+    color: #c62828;
+    padding: 1rem;
+    border-radius: 6px;
+    border-left: 4px solid var(--cor-erro);
+    margin: 1rem 0;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.error-message::before {
+    content: '✕';
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.warning-message {
+    background: #fff3e0;
+    color: #e65100;
+    padding: 1rem;
+    border-radius: 6px;
+    border-left: 4px solid var(--cor-alerta);
+    margin: 1rem 0;
+}
+
+.form-buttons {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.form-buttons button {
+    flex: 1;
+}
+
+.receipt {
+    background: white;
+    border: 2px dashed var(--cor-primaria);
+    padding: 1.5rem;
+    border-radius: 8px;
+    text-align: center;
+    margin: 1.5rem 0;
+    font-family: 'Courier New', monospace;
+}
+
+.receipt h3 {
+    border-bottom: 2px solid var(--cor-primaria);
+    padding-bottom: 1rem;
+    margin: 0 0 1rem 0;
+}
+
+.receipt .receipt-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem 0;
+    font-size: 0.95rem;
+}
+
+.receipt .receipt-row.total {
+    border-top: 2px solid var(--cor-primaria);
+    padding-top: 1rem;
+    font-weight: 700;
+    font-size: 1.1rem;
+}
+
+.receipt .receipt-row.footer {
+    border-top: 2px dashed var(--cor-primaria);
+    padding-top: 1rem;
+    margin-top: 1rem;
+    font-size: 0.85rem;
+    color: var(--cor-texto-claro);
+}
+
+.pin-pad {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.75rem;
+    margin: 1.5rem 0;
+}
+
+.pin-button {
+    aspect-ratio: 1;
+    background: var(--cor-primaria);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.5rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.pin-button:hover {
+    background: var(--cor-secundaria);
+    transform: scale(1.05);
+}
+
+.pin-button:active {
+    transform: scale(0.95);
+}
+
+.pin-button.clear {
+    grid-column: 1 / 3;
+    background: var(--cor-alerta);
+}
+
+.pin-button.clear:hover {
+    background: #f57c00;
+}
+
+.pin-button.confirm {
+    background: var(--cor-sucesso);
+}
+
+.pin-button.confirm:hover {
+    background: #00a047;
+}
+
+.pin-display {
+    background: var(--cor-fundo);
+    padding: 1rem;
+    border-radius: 6px;
+    text-align: center;
+    margin-bottom: 1rem;
+    font-size: 2rem;
+    letter-spacing: 0.5rem;
+    color: var(--cor-primaria);
+    font-weight: 700;
+}
+
+.loading-spinner {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 3px solid rgba(0, 91, 170, 0.2);
+    border-radius: 50%;
+    border-top-color: var(--cor-primaria);
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* ============================================
+   RESPONSIVIDADE
+   ============================================ */
+
+@media (max-width: 600px) {
+    .atm-container {
+        margin: 1rem;
+        border-radius: 8px;
+    }
+
+    .atm-body {
+        padding: 1.5rem;
+    }
+
+    .atm-button {
+        font-size: 1rem;
+        padding: 1rem;
+    }
+
+    .balance-display .value {
+        font-size: 1.5rem;
+    }
+
+    .pin-pad {
+        gap: 0.5rem;
+    }
+
+    .pin-button {
+        font-size: 1.2rem;
+    }
+}

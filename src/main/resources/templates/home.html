@@ -1,21 +1,334 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
-  <head>
-    <title>Página de Home apresentada.</title>
-    <link rel="stylesheet" type="text/css" href="css/casa.css" />
-    
-  </head>
-  <body>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org" lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - Sistema Bancário</title>
+    <link rel="stylesheet" type="text/css" href="/css/base.css" />
+    <style>
+        /* Estilos específicos da página home */
+        
+        .home-header {
+            background: linear-gradient(135deg, var(--cor-primaria) 0%, var(--cor-secundaria) 100%);
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            box-shadow: var(--sombra-forte);
+        }
+
+        .home-header h1 {
+            color: white;
+            margin: 0;
+            font-size: 2.5rem;
+        }
+
+        .home-header p {
+            color: #e0e0e0;
+            margin: 0.5rem 0;
+            font-size: 1.1rem;
+        }
+
+        .welcome-message {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+            border-left: 4px solid var(--cor-destaque);
+        }
+
+        .welcome-message strong {
+            color: var(--cor-destaque);
+        }
+
+        .menu-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .menu-card {
+            background: var(--cor-fundo-claro);
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: var(--sombra);
+            transition: all 0.3s ease;
+            border-top: 4px solid var(--cor-primaria);
+            cursor: pointer;
+        }
+
+        .menu-card:hover {
+            box-shadow: var(--sombra-forte);
+            transform: translateY(-5px);
+            border-top-color: var(--cor-destaque);
+        }
+
+        .menu-card-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .menu-card h3 {
+            margin: 1rem 0;
+            color: var(--cor-primaria);
+        }
+
+        .menu-card p {
+            color: var(--cor-texto-claro);
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+        }
+
+        .menu-card-links {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .menu-card-link {
+            flex: 1;
+            min-width: 120px;
+            background: linear-gradient(135deg, var(--cor-primaria) 0%, var(--cor-secundaria) 100%);
+            color: white;
+            padding: 0.7rem 1.2rem;
+            border-radius: 4px;
+            text-decoration: none;
+            text-align: center;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .menu-card-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 91, 170, 0.3);
+        }
+
+        .menu-card-link.secondary {
+            background: var(--cor-fundo);
+            color: var(--cor-primaria);
+            border: 2px solid var(--cor-primaria);
+            padding: 0.6rem 1.1rem;
+        }
+
+        .menu-card-link.secondary:hover {
+            background: var(--cor-primaria);
+            color: white;
+        }
+
+        .section-title {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin: 2rem 0 1rem 0;
+            font-size: 1.5rem;
+            color: var(--cor-primaria);
+            border-bottom: 2px solid var(--cor-borda);
+            padding-bottom: 0.5rem;
+        }
+
+        .section-title::before {
+            content: '';
+            width: 4px;
+            height: 24px;
+            background: var(--cor-primaria);
+            border-radius: 2px;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .info-card {
+            background: var(--cor-fundo-claro);
+            padding: 1.5rem;
+            border-radius: 8px;
+            border-left: 4px solid var(--cor-secundaria);
+            box-shadow: var(--sombra);
+        }
+
+        .info-card strong {
+            color: var(--cor-primaria);
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .info-card span {
+            color: var(--cor-texto-claro);
+            font-size: 0.95rem;
+        }
+
+        .logout-btn {
+            background: var(--cor-erro) !important;
+            margin-top: 2rem;
+        }
+
+        .logout-btn:hover {
+            background: #d32f2f !important;
+            box-shadow: 0 4px 12px rgba(244, 67, 54, 0.3) !important;
+        }
+
+        @media (max-width: 768px) {
+            .home-header h1 {
+                font-size: 1.8rem;
+            }
+
+            .menu-container {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .menu-card {
+                padding: 1.5rem;
+            }
+
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navegação -->
     <nav>
-      <a th:href="@{/consulta}">Consulta</a>
-      <a th:href="@{/hello}">Hello</a>
-      <a th:href="@{/cadastro}">Cadastro</a>
-      <a th:href="@{/pedido}">Pedido</a>
+        <a href="/home" style="background: rgba(255, 255, 255, 0.3);">Home</a>
+        <a href="/banco/frentecaixaeletronico">Caixa Eletrônico</a>
+        <a href="/logout">Sair</a>
     </nav>
-    <h1 class="base">Seja bem vindo - Douglas Mendes</h1>
-    <p class="base">Clicar <a th:href="@{/consulta}">Aqui</a> para consultar.</p>
-    <p class="base">Clicar <a th:href="@{/hello}">Aqui</a> para saudação.</p>
-    <p class="base">Clicar <a th:href="@{/cadastro}">Aqui</a> para cadastrar.</p>
-    <p class="base">Clicar <a th:href="@{/banco/frentecaixaeletronico}">Aqui</a> para Frente de caixa Eletrônico.</p>
-  </body>
+
+    <!-- Conteúdo principal -->
+    <div class="container">
+        <!-- Cabeçalho de boas-vindas -->
+        <div class="home-header">
+            <h1>🏦 Bem-vindo ao Sistema Bancário</h1>
+            <div class="welcome-message">
+                <p>Olá, <strong>[[${nomeCasa}]]</strong>! Escolha uma opção abaixo para continuar.</p>
+            </div>
+        </div>
+
+        <!-- Menu de Operações Bancárias -->
+        <div class="section-title">📋 Operações Bancárias</div>
+        <div class="menu-container">
+            <!-- Card: Frente de Caixa Eletrônico -->
+            <div class="menu-card">
+                <div class="menu-card-icon">🏧</div>
+                <h3>Caixa Eletrônico</h3>
+                <p>Acesse o caixa eletrônico para realizar operações bancárias como saque, depósito e consulta de extrato.</p>
+                <div class="menu-card-links">
+                    <a href="/banco/frentecaixaeletronico" class="menu-card-link">Acessar</a>
+                </div>
+            </div>
+
+            <!-- Card: Cadastro de Conta -->
+            <div class="menu-card">
+                <div class="menu-card-icon">📝</div>
+                <h3>Cadastro de Conta</h3>
+                <p>Crie uma nova conta corrente informando seus dados pessoais e bancários.</p>
+                <div class="menu-card-links">
+                    <a href="/banco/cadastrocontacorrente" class="menu-card-link">Criar Conta</a>
+                </div>
+            </div>
+
+            <!-- Card: Consultar Saldo -->
+            <div class="menu-card">
+                <div class="menu-card-icon">💰</div>
+                <h3>Consultar Saldo</h3>
+                <p>Verifique o saldo atual de sua conta e visualize as transações recentes.</p>
+                <div class="menu-card-links">
+                    <a href="/banco/saldo" class="menu-card-link">Ver Saldo</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Menu de Funcionalidades Adicionais -->
+        <div class="section-title">📱 Sistema de Vendas</div>
+        <div class="menu-container">
+            <!-- Card: Cadastro de Cliente -->
+            <div class="menu-card">
+                <div class="menu-card-icon">👤</div>
+                <h3>Gerenciar Clientes</h3>
+                <p>Cadastre e consulte informações de clientes do sistema.</p>
+                <div class="menu-card-links">
+                    <a href="/cadastro" class="menu-card-link">Cadastrar</a>
+                    <a href="/consulta" class="menu-card-link secondary">Consultar</a>
+                </div>
+            </div>
+
+            <!-- Card: Pedidos -->
+            <div class="menu-card">
+                <div class="menu-card-icon">📦</div>
+                <h3>Gerenciar Pedidos</h3>
+                <p>Crie e acompanhe pedidos de vendas.</p>
+                <div class="menu-card-links">
+                    <a href="/pedido" class="menu-card-link">Novo Pedido</a>
+                </div>
+            </div>
+
+            <!-- Card: Informações -->
+            <div class="menu-card">
+                <div class="menu-card-icon">ℹ️</div>
+                <h3>Informações</h3>
+                <p>Conheça mais sobre o sistema e suas funcionalidades.</p>
+                <div class="menu-card-links">
+                    <a href="/hello" class="menu-card-link">Saiba Mais</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Menu de Educação em POO -->
+        <div class="section-title">📚 Educação - POO (Orientação a Objetos)</div>
+        <div class="menu-container">
+            <!-- Card: Duke Revisão -->
+            <div class="menu-card" style="border-top: 4px solid #6200EA; position: relative;">
+                <div style="position: absolute; top: 1rem; right: 1rem; background: linear-gradient(135deg, #6200EA, #03DAC6); color: white; padding: 0.4rem 0.8rem; border-radius: 20px; font-size: 0.8rem; font-weight: bold;">
+                    ⭐ NOVO
+                </div>
+                <div class="menu-card-icon">🏪</div>
+                <h3>Duke Revisão</h3>
+                <p>Sistema interativo para aprender Orientação a Objetos através de um e-commerce educacional. Explore padrões de design, herança, polimorfismo e muito mais!</p>
+                <div class="menu-card-links">
+                    <a href="/revisao/inicio" class="menu-card-link" style="background: linear-gradient(135deg, #6200EA 0%, #03DAC6 100%);">Acessar Duke</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Informações do Usuário -->
+        <div class="section-title">👤 Minha Conta</div>
+        <div class="info-grid">
+            <div class="info-card">
+                <strong>Usuário:</strong>
+                <span>Sistema Bancário v1.0</span>
+            </div>
+            <div class="info-card">
+                <strong>Status:</strong>
+                <span style="color: var(--cor-sucesso);">✓ Conectado</span>
+            </div>
+            <div class="info-card">
+                <strong>Ambiente:</strong>
+                <span>Educacional</span>
+            </div>
+            <div class="info-card">
+                <strong>Banco de Dados:</strong>
+                <span>H2 Database</span>
+            </div>
+        </div>
+
+        <!-- Botão Sair -->
+        <div style="text-align: center; margin-top: 2rem;">
+            <a href="/logout" class="menu-card-link logout-btn" style="display: inline-block;">🚪 Sair do Sistema</a>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p><strong>Sistema Bancário Educacional</strong> - Desenvolvido para fins educacionais</p>
+        <p>Projeto Java Spring Boot | H2 Database | Thymeleaf</p>
+        <p>&copy; 2024 - Todos os direitos reservados</p>
+    </footer>
+</body>
 </html>

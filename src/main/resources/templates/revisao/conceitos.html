@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conceitos POO - Duke Revisão</title>
+    <link rel="stylesheet" th:href="@{/css/base.css}">
+    <link rel="stylesheet" th:href="@{/css/revisao/revisao.css}">
+    <style>
+        .conceito-card {
+            background: white;
+            border-left: 4px solid #6200EA;
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+            border-radius: 6px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .conceito-card:hover {
+            box-shadow: 0 6px 16px rgba(98, 0, 234, 0.2);
+            transform: translateY(-2px);
+        }
+        
+        .conceito-titulo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #6200EA;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .conceito-descricao {
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+        
+        .conceito-exemplo {
+            background: #f5f5f5;
+            border-left: 3px solid #03DAC6;
+            padding: 1rem;
+            margin-top: 1rem;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            overflow-x: auto;
+        }
+        
+        .conceito-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .mini-card {
+            background: linear-gradient(135deg, #6200EA 0%, #03DAC6 100%);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            text-align: center;
+        }
+        
+        .mini-card strong {
+            font-size: 1.2rem;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="revisao-header">
+        <div style="max-width: 1200px; margin: 0 auto; padding: 1rem;">
+            <h1 style="margin: 0; font-size: 2.5rem;">📚 Conceitos POO</h1>
+            <p style="margin: 0.5rem 0 0; font-size: 1.1rem; opacity: 0.9;">
+                Entenda os princípios fundamentais da Orientação a Objetos
+            </p>
+        </div>
+    </header>
+
+    <main style="max-width: 1200px; margin: 0 auto; padding: 2rem;">
+        <!-- Visão Geral -->
+        <section style="margin-bottom: 3rem;">
+            <h2 style="color: #6200EA; font-size: 2rem; margin-bottom: 1.5rem;">
+                🎯 8 Pilares da Orientação a Objetos
+            </h2>
+            
+            <div class="conceito-grid">
+                <div class="mini-card">
+                    <strong>1️⃣ Encapsulamento</strong>
+                    Proteger dados internos
+                </div>
+                <div class="mini-card" style="background: linear-gradient(135deg, #FF6B6B 0%, #FF8E72 100%);">
+                    <strong>2️⃣ Herança</strong>
+                    Reutilizar código
+                </div>
+                <div class="mini-card" style="background: linear-gradient(135deg, #4ECDC4 0%, #44A08D 100%);">
+                    <strong>3️⃣ Polimorfismo</strong>
+                    Múltiplas formas
+                </div>
+                <div class="mini-card" style="background: linear-gradient(135deg, #F7B731 0%, #F76B1A 100%);">
+                    <strong>4️⃣ Abstração</strong>
+                    Simplificar complexidade
+                </div>
+            </div>
+        </section>
+
+        <!-- 1. Encapsulamento -->
+        <div class="conceito-card">
+            <div class="conceito-titulo">🔒 1. Encapsulamento</div>
+            <p class="conceito-descricao">
+                Encapsulamento é o princípio de <strong>ocultar detalhes internos</strong> de uma classe,
+                permitindo acesso apenas através de métodos públicos. Protege dados e garante integridade.
+            </p>
+            <div class="conceito-exemplo">
+// ❌ Sem encapsulamento<br>
+class Pessoa {<br>
+&nbsp;&nbsp;public String nome;<br>
+&nbsp;&nbsp;public int idade; // Qualquer um pode mudar para -50!<br>
+}<br>
+<br>
+// ✅ Com encapsulamento<br>
+class Pessoa {<br>
+&nbsp;&nbsp;private String nome;<br>
+&nbsp;&nbsp;private int idade; // Protegido<br>
+&nbsp;&nbsp;<br>
+&nbsp;&nbsp;public void setIdade(int idade) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;if (idade > 0 && idade < 150) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this.idade = idade; // Valida antes de atribuir<br>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;}<br>
+}
+            </div>
+            <p style="color: #666; font-size: 0.9rem; margin-top: 1rem;">
+                💡 <strong>Exemplo no projeto:</strong> Classe <code>Carrinho</code> encapsula lista <code>private List&lt;Produto&gt;</code>
+            </p>
+        </div>
+
+        <!-- 2. Herança -->
+        <div class="conceito-card">
+            <div class="conceito-titulo">👨‍👧‍👦 2. Herança</div>
+            <p class="conceito-descricao">
+                Herança permite que uma classe <strong>herde características de outra</strong>, reutilizando código
+                e criando hierarquias. Usa-se quando há relação "é um/uma".
+            </p>
+            <div class="conceito-exemplo">
+// Superclasse abstrata<br>
+abstract class Produto {<br>
+&nbsp;&nbsp;protected String nome;<br>
+&nbsp;&nbsp;protected double preco;<br>
+&nbsp;&nbsp;<br>
+&nbsp;&nbsp;abstract void exibirDetalhes();<br>
+}<br>
+<br>
+// Subclasse concreta herda de Produto<br>
+class Camisa extends Produto {<br>
+&nbsp;&nbsp;private String tamanho;<br>
+&nbsp;&nbsp;<br>
+&nbsp;&nbsp;@Override<br>
+&nbsp;&nbsp;void exibirDetalhes() {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(nome + " - Tam: " + tamanho);<br>
+&nbsp;&nbsp;}<br>
+}
+            </div>
+            <p style="color: #666; font-size: 0.9rem; margin-top: 1rem;">
+                💡 <strong>Vantagem:</strong> Camisa herda <code>nome</code>, <code>preco</code>, <code>getPreco()</code> de Produto
+            </p>
+        </div>
+
+        <!-- 3. Polimorfismo -->
+        <div class="conceito-card">
+            <div class="conceito-titulo">🎭 3. Polimorfismo</div>
+            <p class="conceito-descricao">
+                Polimorfismo ("muitas formas") permite que <strong>objetos diferentes respondam ao mesmo comando</strong>
+                de formas diferentes. Código genérico funciona com múltiplos tipos.
+            </p>
+            <div class="conceito-exemplo">
+// Interface define contrato<br>
+interface MetodoPagamento {<br>
+&nbsp;&nbsp;void processar(double valor) throws PagamentoException;<br>
+}<br>
+<br>
+// Diferentes implementações<br>
+class CartaoCredito implements MetodoPagamento {<br>
+&nbsp;&nbsp;public void processar(double valor) { /* valida cartão */ }<br>
+}<br>
+<br>
+class PIX implements MetodoPagamento {<br>
+&nbsp;&nbsp;public void processar(double valor) { /* valida PIX */ }<br>
+}<br>
+<br>
+// Código polimórfico - funciona com qualquer MetodoPagamento<br>
+void fecharPedido(MetodoPagamento metodo) {<br>
+&nbsp;&nbsp;metodo.processar(100.00); // Qual será executado?<br>
+}
+            </div>
+            <p style="color: #666; font-size: 0.9rem; margin-top: 1rem;">
+                💡 <strong>Magic:</strong> Chamada <code>metodo.processar()</code> executa versão correta em tempo de execução!
+            </p>
+        </div>
+
+        <!-- 4. Abstração -->
+        <div class="conceito-card">
+            <div class="conceito-titulo">🔍 4. Abstração</div>
+            <p class="conceito-descricao">
+                Abstração é <strong>mostrar apenas o essencial</strong>, escondendo complexidade. 
+                Interfaces e classes abstratas definem "contrato" sem detalhar implementação.
+            </p>
+            <div class="conceito-exemplo">
+// Interface abstrata - define O QUÊ<br>
+public interface MetodoPagamento {<br>
+&nbsp;&nbsp;void processar(double valor) throws PagamentoException;<br>
+}<br>
+<br>
+// Classe abstrata - define O QUÊ + estrutura<br>
+public abstract class Produto {<br>
+&nbsp;&nbsp;protected String nome;<br>
+&nbsp;&nbsp;abstract void exibirDetalhes(); // Subclasses implementam COMO<br>
+}
+            </div>
+            <p style="color: #666; font-size: 0.9rem; margin-top: 1rem;">
+                💡 <strong>Benefício:</strong> Quem usa não precisa saber COMO funciona, apenas O QUÊ faz
+            </p>
+        </div>
+
+        <!-- 5. Composição -->
+        <div class="conceito-card">
+            <div class="conceito-titulo">🧩 5. Composição</div>
+            <p class="conceito-descricao">
+                Composição cria objetos <strong>contendo outros objetos</strong> (relação "tem um").
+                Mais flexível que herança em muitos casos.
+            </p>
+            <div class="conceito-exemplo">
+// Composição: Pedido TEM UM Carrinho<br>
+class Pedido {<br>
+&nbsp;&nbsp;private Carrinho carrinho; // Campo de composição<br>
+&nbsp;&nbsp;private StatusPedido status;<br>
+&nbsp;&nbsp;private double valorTotal;<br>
+&nbsp;&nbsp;<br>
+&nbsp;&nbsp;public Pedido() {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;this.carrinho = new Carrinho(); // Cria objeto interno<br>
+&nbsp;&nbsp;}<br>
+}
+            </div>
+            <p style="color: #666; font-size: 0.9rem; margin-top: 1rem;">
+                💡 <strong>Diferença de Herança:</strong> Herança é "é-um", Composição é "tem-um"
+            </p>
+        </div>
+
+        <!-- 6. Agregação -->
+        <div class="conceito-card">
+            <div class="conceito-titulo">📦 6. Agregação</div>
+            <p class="conceito-descricao">
+                Agregação é tipo composição, mas <strong>objetos agregados podem existir independentemente</strong>.
+                É uma relação mais fraca ("referencia").
+            </p>
+            <div class="conceito-exemplo">
+// Agregação: Carrinho REFERENCIA Produtos<br>
+class Carrinho {<br>
+&nbsp;&nbsp;private List&lt;Produto&gt; itens; // Agregação<br>
+&nbsp;&nbsp;<br>
+&nbsp;&nbsp;public void adicionarItem(Produto p) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;itens.add(p); // Produto pode existir sem Carrinho<br>
+&nbsp;&nbsp;}<br>
+}
+            </div>
+            <p style="color: #666; font-size: 0.9rem; margin-top: 1rem;">
+                💡 <strong>Diferença:</strong> Se Carrinho for deletado, Produtos continuam existindo!
+            </p>
+        </div>
+
+        <!-- 7. Collections API -->
+        <div class="conceito-card">
+            <div class="conceito-titulo">📚 7. Collections API (Coleções)</div>
+            <p class="conceito-descricao">
+                Collections são estruturas que <strong>armazenam múltiplos objetos</strong>.
+                List, Set, Map são interfaces que definem comportamentos diferentes.
+            </p>
+            <div class="conceito-exemplo">
+// List - ordem importa<br>
+List&lt;Produto&gt; itens = new ArrayList&lt;&gt;();<br>
+itens.add(new Camisa(...)); // Index 0<br>
+itens.add(new Camisa(...)); // Index 1<br>
+<br>
+// Set - sem duplicatas<br>
+Set&lt;String&gt; tags = new HashSet&lt;&gt;();<br>
+tags.add("promocao"); // OK<br>
+tags.add("promocao"); // Ignorado (já existe)<br>
+<br>
+// Map - chave/valor<br>
+Map&lt;String, Produto&gt; estoque = new HashMap&lt;&gt;();<br>
+estoque.put("CAMISA_001", new Camisa(...));
+            </div>
+            <p style="color: #666; font-size: 0.9rem; margin-top: 1rem;">
+                💡 <strong>Projeto:</strong> Carrinho usa <code>List&lt;Produto&gt;</code> para manter ordem
+            </p>
+        </div>
+
+        <!-- 8. Streams API -->
+        <div class="conceito-card">
+            <div class="conceito-titulo">🌊 8. Streams API (Programação Funcional)</div>
+            <p class="conceito-descricao">
+                Streams permite <strong>processar coleções com programação funcional</strong>.
+                Operações como map, filter, reduce transformam dados de forma elegante.
+            </p>
+            <div class="conceito-exemplo">
+// Sem Streams<br>
+double total = 0;<br>
+for (Produto p : itens) {<br>
+&nbsp;&nbsp;total += p.getPreco();<br>
+}<br>
+<br>
+// Com Streams ✨<br>
+double total = itens.stream()<br>
+&nbsp;&nbsp;.mapToDouble(Produto::getPreco)<br>
+&nbsp;&nbsp;.sum();<br>
+<br>
+// Mais complexo: filtrar + mapear + somar<br>
+double caros = itens.stream()<br>
+&nbsp;&nbsp;.filter(p -&gt; p.getPreco() &gt; 50)<br>
+&nbsp;&nbsp;.mapToDouble(Produto::getPreco)<br>
+&nbsp;&nbsp;.sum();
+            </div>
+            <p style="color: #666; font-size: 0.9rem; margin-top: 1rem;">
+                💡 <strong>Vantagem:</strong> Mais legível, conciso, e permite otimizações automáticas
+            </p>
+        </div>
+
+        <!-- Design Patterns Usados -->
+        <section style="margin-top: 3rem; padding: 2rem; background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%); border-radius: 8px;">
+            <h2 style="color: #6200EA; margin-top: 0;">🎨 Padrões de Design Demonstrados</h2>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin-top: 1.5rem;">
+                <div style="background: white; padding: 1.5rem; border-radius: 6px; border-left: 4px solid #6200EA;">
+                    <strong style="color: #6200EA; font-size: 1.1rem;">Strategy Pattern</strong>
+                    <p style="margin: 0.5rem 0; color: #666;">
+                        Diferentes algoritmos de pagamento (CartaoCredito, PIX, PagamentoPix) 
+                        implementam interface <code>MetodoPagamento</code>
+                    </p>
+                </div>
+                
+                <div style="background: white; padding: 1.5rem; border-radius: 6px; border-left: 4px solid #FF6B6B;">
+                    <strong style="color: #FF6B6B; font-size: 1.1rem;">Template Method</strong>
+                    <p style="margin: 0.5rem 0; color: #666;">
+                        Classe abstrata <code>Produto</code> define estrutura comum, subclasses (Camisa) 
+                        implementam detalhes com <code>@Override exibirDetalhes()</code>
+                    </p>
+                </div>
+                
+                <div style="background: white; padding: 1.5rem; border-radius: 6px; border-left: 4px solid #4ECDC4;">
+                    <strong style="color: #4ECDC4; font-size: 1.1rem;">State Pattern</strong>
+                    <p style="margin: 0.5rem 0; color: #666;">
+                        Enum <code>StatusPedido</code> com valores (AGUARDANDO_PAGAMENTO, PAGO, ENTREGUE) 
+                        representa estados do pedido
+                    </p>
+                </div>
+                
+                <div style="background: white; padding: 1.5rem; border-radius: 6px; border-left: 4px solid #F7B731;">
+                    <strong style="color: #F7B731; font-size: 1.1rem;">MVC Pattern</strong>
+                    <p style="margin: 0.5rem 0; color: #666;">
+                        Separação clara: Controllers roteiam, Services processam, Views (Thymeleaf) renderizam
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Navegação -->
+        <div style="display: flex; justify-content: center; gap: 1rem; margin-top: 3rem; flex-wrap: wrap;">
+            <a th:href="@{/revisao/inicio}" class="btn-primary">← Voltar</a>
+            <a th:href="@{/revisao/diagrama}" class="btn-primary">Ver Diagrama →</a>
+        </div>
+    </main>
+
+    <script th:src="@{/js/revisao.js}"></script>
+</body>
+</html>

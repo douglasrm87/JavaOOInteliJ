@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${titulo}">Duke Revisão</title>
+    <link rel="stylesheet" type="text/css" href="/css/base.css" />
+    <link rel="stylesheet" type="text/css" href="/css/revisao/revisao.css" />
+</head>
+<body>
+    <!-- Navegação -->
+    <nav>
+        <a href="/home">Home</a>
+        <a href="/revisao/inicio">Duke Revisão</a>
+        <a href="/revisao/conceitos">📚 Conceitos</a>
+        <a href="/logout">Sair</a>
+    </nav>
+
+    <!-- Container Principal -->
+    <div class="container" style="max-width: 1200px; margin: 0 auto; padding: 2rem;">
+        
+        <!-- Header -->
+        <div class="revisao-header">
+            <h1 th:text="${titulo}">🏪 Duke Revisão</h1>
+            <p th:text="${descricao}">Aprenda POO com exemplo real</p>
+        </div>
+
+        <!-- Seção Principal -->
+        <div class="revisao-content">
+            
+            <!-- Introdução -->
+            <section class="intro-section">
+                <div class="intro-card">
+                    <h2>🎯 O que é Duke Revisão?</h2>
+                    <p>
+                        Duke Revisão é um projeto educacional que demonstra conceitos fundamentais 
+                        de Programação Orientada a Objetos (POO) através de um exemplo prático: 
+                        um sistema de loja virtual.
+                    </p>
+                    <div class="concept-highlight">
+                        <strong>💡 Conceitos Demonstrados:</strong>
+                        <ul>
+                            <li>✅ Encapsulamento (private/public)</li>
+                            <li>✅ Herança (extends)</li>
+                            <li>✅ Polimorfismo (interfaces e classes abstratas)</li>
+                            <li>✅ Abstração (classe abstrata Produto)</li>
+                            <li>✅ Tratamento de Exceções</li>
+                            <li>✅ Coleções e Streams</li>
+                            <li>✅ Design Patterns (Strategy, Template Method)</li>
+                            <li>✅ Enums (Type-safe constants)</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Menu de Operações -->
+            <section class="operations-section">
+                <h2>🛍️ Operações</h2>
+                <div class="operations-grid">
+                    
+                    <!-- Card: Produtos -->
+                    <div class="op-card">
+                        <div class="op-icon">📦</div>
+                        <h3>Produtos</h3>
+                        <p>Explore o catálogo de camisas com diferentes tamanhos e preços</p>
+                        <div class="concept-note">
+                            <strong>Conceito:</strong> Herança e Polimorfismo<br>
+                            <em>Produto (abstrata) → Camisa (concreta)</em>
+                        </div>
+                        <a href="/revisao/produtos" class="btn-primary">Ver Produtos</a>
+                    </div>
+
+                    <!-- Card: Carrinho -->
+                    <div class="op-card">
+                        <div class="op-icon">🛒</div>
+                        <h3>Carrinho</h3>
+                        <p>Gerencie seus itens, calcule totais com Streams</p>
+                        <div class="concept-note">
+                            <strong>Conceito:</strong> Agregação e Streams API<br>
+                            <em>List&lt;Produto&gt; com .mapToDouble().sum()</em>
+                        </div>
+                        <a href="/revisao/carrinho" class="btn-primary">Meu Carrinho</a>
+                    </div>
+
+                    <!-- Card: Pagamento -->
+                    <div class="op-card">
+                        <div class="op-icon">💳</div>
+                        <h3>Pagamento</h3>
+                        <p>Escolha entre 3 métodos: Cartão, PIX, PIX com QR Code</p>
+                        <div class="concept-note">
+                            <strong>Conceito:</strong> Strategy Pattern e Polimorfismo<br>
+                            <em>Interface MetodoPagamento implementada por 3 classes</em>
+                        </div>
+                        <a href="/revisao/pagamento" class="btn-primary">Pagar</a>
+                    </div>
+
+                    <!-- Card: Conceitos -->
+                    <div class="op-card">
+                        <div class="op-icon">📚</div>
+                        <h3>Conceitos</h3>
+                        <p>Aprenda os conceitos POO aplicados neste projeto</p>
+                        <div class="concept-note">
+                            <strong>Conceito:</strong> Todas as 4 Pilares da POO<br>
+                            <em>Encapsulamento, Herança, Polimorfismo, Abstração</em>
+                        </div>
+                        <a href="/revisao/conceitos" class="btn-primary">Estudar</a>
+                    </div>
+
+                    <!-- Card: Diagrama -->
+                    <div class="op-card">
+                        <div class="op-icon">🔧</div>
+                        <h3>Diagrama</h3>
+                        <p>Veja o diagrama de classes e relacionamentos</p>
+                        <div class="concept-note">
+                            <strong>Conceito:</strong> UML e Estrutura de Classes<br>
+                            <em>Composição, Agregação, Herança, Implementação</em>
+                        </div>
+                        <a href="/revisao/diagrama" class="btn-primary">Ver Diagrama</a>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- Seção: Arquitetura -->
+            <section class="architecture-section">
+                <h2>🏗️ Arquitetura do Projeto</h2>
+                <div class="arch-grid">
+                    <div class="arch-box">
+                        <h4>📦 Model (Dados)</h4>
+                        <ul>
+                            <li><code>Produto</code> (abstrata)</li>
+                            <li><code>Camisa</code> (concreta)</li>
+                            <li><code>StatusPedido</code> (enum)</li>
+                        </ul>
+                    </div>
+                    <div class="arch-box">
+                        <h4>🎯 Interfaces</h4>
+                        <ul>
+                            <li><code>MetodoPagamento</code></li>
+                            <li>CartaoCredito</li>
+                            <li>PIX</li>
+                            <li>PagamentoPix</li>
+                        </ul>
+                    </div>
+                    <div class="arch-box">
+                        <h4>⚙️ Service (Lógica)</h4>
+                        <ul>
+                            <li><code>Carrinho</code></li>
+                            <li><code>Pedido</code></li>
+                        </ul>
+                    </div>
+                    <div class="arch-box">
+                        <h4>🔴 Exceções</h4>
+                        <ul>
+                            <li><code>PagamentoException</code></li>
+                            <li>Tratamento customizado</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p><strong>🏪 Duke Revisão - Sistema Educacional de Loja Virtual</strong></p>
+        <p>Aprenda POO com um exemplo real | <strong>Spring Boot + Thymeleaf</strong></p>
+    </footer>
+
+    <script src="/js/revisao.js"></script>
+</body>
+</html>

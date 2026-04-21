@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrinho - Duke Revisão</title>
+    <link rel="stylesheet" type="text/css" href="/css/base.css" />
+    <link rel="stylesheet" type="text/css" href="/css/revisao/revisao.css" />
+    <link rel="stylesheet" type="text/css" href="/css/revisao/carrinho.css" />
+</head>
+<body>
+    <!-- Navegação -->
+    <nav>
+        <a href="/home">Home</a>
+        <a href="/revisao/inicio">Duke Revisão</a>
+        <a href="/revisao/produtos">📦 Produtos</a>
+        <a href="/logout">Sair</a>
+    </nav>
+
+    <!-- Container -->
+    <div class="container" style="max-width: 1000px; margin: 0 auto; padding: 2rem;">
+        
+        <!-- Header -->
+        <div class="page-header">
+            <h1>🛒 Meu Carrinho</h1>
+            <p>Revise seus itens antes do pagamento</p>
+        </div>
+
+        <!-- Info Educacional -->
+        <div class="educational-box">
+            <h3>📚 Conceito em Destaque:</h3>
+            <p>
+                <strong>AGREGAÇÃO E COLEÇÕES</strong><br>
+                O carrinho contém uma <code>List&lt;Produto&gt;</code>. 
+                Usa Streams para calcular total: <code>.mapToDouble(Produto::getPreco).sum()</code>
+            </p>
+        </div>
+
+        <!-- Carrinho vazio ou com itens -->
+        <div id="carrinhoContainer" class="carrinho-container">
+            <div class="carrinho-vazio">
+                <div class="empty-icon">🛒</div>
+                <h2>Carrinho Vazio</h2>
+                <p>Você ainda não adicionou nenhum produto</p>
+                <a href="/revisao/produtos" class="btn-primary">🛍️ Continuar Comprando</a>
+            </div>
+        </div>
+
+        <!-- Tabela de Itens (quando houver) -->
+        <div id="carrinhoTabela" class="carrinho-tabela" style="display: none;">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Produto</th>
+                        <th>Tamanho</th>
+                        <th>Preço Unitário</th>
+                        <th>Ação</th>
+                    </tr>
+                </thead>
+                <tbody id="tabelaItens">
+                    <!-- Preenchido por JS -->
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Resumo -->
+        <div id="resumoContainer" class="resumo-container" style="display: none;">
+            <div class="resumo-box">
+                <h3>📋 Resumo do Carrinho</h3>
+                <div class="resumo-item">
+                    <span>Quantidade de Itens:</span>
+                    <strong id="quantidadeItens">0</strong>
+                </div>
+                <div class="resumo-item">
+                    <span>Subtotal:</span>
+                    <strong id="subtotal">R$ 0,00</strong>
+                </div>
+                <div class="resumo-item">
+                    <span>Frete:</span>
+                    <strong id="frete">R$ 0,00</strong>
+                </div>
+                <div class="resumo-item total">
+                    <span>TOTAL:</span>
+                    <strong id="total">R$ 0,00</strong>
+                </div>
+            </div>
+        </div>
+
+        <!-- Botões de Ação -->
+        <div class="acoes-container" id="acoesContainer" style="display: none;">
+            <button class="btn-secondary" onclick="window.location.href='/revisao/produtos'">
+                🛍️ Continuar Comprando
+            </button>
+            <button class="btn-danger" onclick="limparCarrinho()">
+                🗑️ Limpar Carrinho
+            </button>
+            <button class="btn-primary" onclick="window.location.href='/revisao/pagamento'">
+                💳 Prosseguir para Pagamento
+            </button>
+        </div>
+
+        <!-- Conceito: Streams API -->
+        <section class="concept-section">
+            <h2>💻 Como Calcular o Total com Streams</h2>
+            <div class="code-example">
+                <pre><code>// CLASSE: Carrinho
+public class Carrinho {
+    private List&lt;Produto&gt; itens;
+    
+    // Método que usa STREAMS para calcular total
+    public double calcularTotal() {
+        return itens.stream()                    // Converte lista em stream
+                    .mapToDouble(Produto::getPreco)  // Extrai preço (double)
+                    .sum();                      // Soma todos os preços
+    }
+}
+
+// FORMA ANTIGA (sem Streams)
+public double calcularTotalAntigo() {
+    double total = 0;
+    for (Produto p : itens) {
+        total += p.getPreco();
+    }
+    return total;
+}
+
+// ✅ Streams é mais elegante, funcional e legível!</code></pre>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p><strong>🛒 Carrinho - Duke Revisão</strong></p>
+    </footer>
+
+    <script src="/js/carrinho.js"></script>
+</body>
+</html>

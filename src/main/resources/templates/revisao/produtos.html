@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Produtos - Duke Revisão</title>
+    <link rel="stylesheet" type="text/css" href="/css/base.css" />
+    <link rel="stylesheet" type="text/css" href="/css/revisao/revisao.css" />
+    <link rel="stylesheet" type="text/css" href="/css/revisao/produtos.css" />
+</head>
+<body>
+    <!-- Navegação -->
+    <nav>
+        <a href="/home">Home</a>
+        <a href="/revisao/inicio">Duke Revisão</a>
+        <a href="/revisao/carrinho">🛒 Carrinho</a>
+        <a href="/logout">Sair</a>
+    </nav>
+
+    <!-- Container -->
+    <div class="container" style="max-width: 1200px; margin: 0 auto; padding: 2rem;">
+        
+        <!-- Header -->
+        <div class="page-header">
+            <h1>📦 Produtos</h1>
+            <p>Catálogo de camisas - Aprenda enquanto compra!</p>
+        </div>
+
+        <!-- Info Educacional -->
+        <div class="educational-box">
+            <h3>📚 Conceito em Destaque:</h3>
+            <p>
+                <strong>HERANÇA E POLIMORFISMO</strong><br>
+                Cada camisa é uma instância de <code>Camisa extends Produto</code>.
+                A classe abstrata <code>Produto</code> define o que toda camisa deve ter,
+                mas cada camisa implementa seus detalhes de forma específica!
+            </p>
+        </div>
+
+        <!-- Grid de Produtos -->
+        <div class="products-grid">
+            
+            <!-- Produto 1 -->
+            <div class="product-card">
+                <div class="product-header">
+                    <span class="product-badge">DESTAQUE</span>
+                </div>
+                <div class="product-image">👕</div>
+                <div class="product-info">
+                    <h3>Camisa Azul Premium</h3>
+                    <p class="product-description">
+                        Camisa básica em algodão puro, confortável para uso diário
+                    </p>
+                    <div class="product-specs">
+                        <span class="spec">Tamanho: P, M, G</span>
+                        <span class="spec">Cor: Azul</span>
+                    </div>
+                    <div class="product-price">R$ 89,90</div>
+                    <div class="concept-micro">
+                        <small>📌 Instância: <code>new Camisa("Camisa Azul", 89.90, "M")</code></small>
+                    </div>
+                </div>
+                <div class="product-actions">
+                    <button class="btn-small" onclick="adicionarProduto('Camisa Azul Premium', 89.90, 'M')">
+                        ➕ Adicionar
+                    </button>
+                </div>
+            </div>
+
+            <!-- Produto 2 -->
+            <div class="product-card">
+                <div class="product-header"></div>
+                <div class="product-image">👕</div>
+                <div class="product-info">
+                    <h3>Camisa Vermelha Casual</h3>
+                    <p class="product-description">
+                        Perfeita para ocasiões informais, oferece ótima qualidade
+                    </p>
+                    <div class="product-specs">
+                        <span class="spec">Tamanho: P, M, G</span>
+                        <span class="spec">Cor: Vermelho</span>
+                    </div>
+                    <div class="product-price">R$ 59,90</div>
+                    <div class="concept-micro">
+                        <small>📌 Instância: <code>new Camisa("Camisa Vermelha", 59.90, "G")</code></small>
+                    </div>
+                </div>
+                <div class="product-actions">
+                    <button class="btn-small" onclick="adicionarProduto('Camisa Vermelha Casual', 59.90, 'G')">
+                        ➕ Adicionar
+                    </button>
+                </div>
+            </div>
+
+            <!-- Produto 3 -->
+            <div class="product-card">
+                <div class="product-header"></div>
+                <div class="product-image">👕</div>
+                <div class="product-info">
+                    <h3>Camisa Preta Social</h3>
+                    <p class="product-description">
+                        Ideal para eventos sociais, material premium
+                    </p>
+                    <div class="product-specs">
+                        <span class="spec">Tamanho: M, G, GG</span>
+                        <span class="spec">Cor: Preto</span>
+                    </div>
+                    <div class="product-price">R$ 129,90</div>
+                    <div class="concept-micro">
+                        <small>📌 Instância: <code>new Camisa("Camisa Preta", 129.90, "P")</code></small>
+                    </div>
+                </div>
+                <div class="product-actions">
+                    <button class="btn-small" onclick="adicionarProduto('Camisa Preta Social', 129.90, 'P')">
+                        ➕ Adicionar
+                    </button>
+                </div>
+            </div>
+
+            <!-- Produto 4 -->
+            <div class="product-card">
+                <div class="product-header"></div>
+                <div class="product-image">👕</div>
+                <div class="product-info">
+                    <h3>Camisa Branca Clássica</h3>
+                    <p class="product-description">
+                        Essencial no guarda-roupa, versátil e elegante
+                    </p>
+                    <div class="product-specs">
+                        <span class="spec">Tamanho: P, M, G, GG</span>
+                        <span class="spec">Cor: Branco</span>
+                    </div>
+                    <div class="product-price">R$ 79,90</div>
+                    <div class="concept-micro">
+                        <small>📌 Instância: <code>new Camisa("Camisa Branca", 79.90, "M")</code></small>
+                    </div>
+                </div>
+                <div class="product-actions">
+                    <button class="btn-small" onclick="adicionarProduto('Camisa Branca Clássica', 79.90, 'M')">
+                        ➕ Adicionar
+                    </button>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Seção: Como os Produtos São Criados -->
+        <section class="code-section">
+            <h2>💻 Como os Produtos São Criados no Código</h2>
+            <div class="code-example">
+                <pre><code>// CLASSE ABSTRATA
+public abstract class Produto {
+    protected String nome;
+    protected double preco;
+    
+    public abstract void exibirDetalhes();
+}
+
+// CLASSE CONCRETA
+public class Camisa extends Produto {
+    private String tamanho;
+    
+    public Camisa(String nome, double preco, String tamanho) {
+        super(nome, preco);
+        this.tamanho = tamanho;
+    }
+    
+    @Override
+    public void exibirDetalhes() {
+        System.out.println("👕 " + nome + " - Tamanho: " + tamanho 
+                         + " - R$ " + preco);
+    }
+}
+
+// USO
+Camisa camisa1 = new Camisa("Camisa Azul", 89.90, "M");
+camisa1.exibirDetalhes(); // Output: 👕 Camisa Azul - Tamanho: M - R$ 89.90</code></pre>
+            </div>
+        </section>
+
+        <!-- Navegação -->
+        <div class="nav-buttons">
+            <a href="/revisao/carrinho" class="btn-primary">🛒 Ir para Carrinho</a>
+            <a href="/revisao/inicio" class="btn-secondary">← Voltar</a>
+        </div>
+
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p><strong>📦 Produtos - Duke Revisão</strong></p>
+    </footer>
+
+    <script src="/js/produtos.js"></script>
+</body>
+</html>

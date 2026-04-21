@@ -77,7 +77,17 @@ public class ProjetoWEB {
             System.out.println("Listando Clientes pela ultima vez");
             listaCli.forEach(System.out::println);
 
+            // Ao final do processo, a tabela de clientes deve estar vazia, pois deletamos o cliente com id 1 e o cliente com id 2 foi atualizado para "Robson Itapoa. Atualizado", mas não foi deletado.
+            // Portanto, o cliente "Robson Itapoa. Atualizado" deve permanecer na tabela, enquanto o cliente "Douglas Mendes" foi deletado. 
+            // Se a tabela de clientes estiver vazia, isso indica que ambos os clientes foram deletados, o que não é o esperado.
+            // Se a tabela de clientes contiver apenas o cliente "Robson Itapoa. Atualizado", isso indica que o cliente "Douglas Mendes" foi deletado corretamente, enquanto o cliente
 
+
+            // Será acionada a classe de security para autenticar o usuário, e a partir disso, o usuário poderá acessar as rotas protegidas do sistema, como por exemplo, a rota de operações bancárias, onde ele poderá realizar saques, depósitos e transferências. 
+            // O processo de autenticação e autorização é fundamental para garantir a segurança do sistema, evitando que usuários não autorizados acessem informações sensíveis ou realizem operações indevidas.
+            // a classe de security é a classe responsável por implementar as regras de autenticação e autorização, utilizando o Spring Security para proteger as rotas do sistema.
+            // Ela utilizar csrf token para proteger as rotas contra ataques de cross-site request forgery, e também implementa a autenticação baseada em JWT (JSON Web Token) para garantir que apenas usuários autenticados possam acessar as rotas protegidas do sistema.
+            // Nome da classe de security: MinhaClasseFilterChain no pacote faculdade.login.security, onde serão implementadas as regras de segurança para o sistema, incluindo a configuração do filtro de autenticação e autorização, e a definição das rotas protegidas do sistema.
 
         };
     }

@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pagamento Confirmado - Duke Revisão</title>
+    <link rel="stylesheet" th:href="@{/css/base.css}">
+    <link rel="stylesheet" th:href="@{/css/revisao/revisao.css}">
+    <style>
+        .confirmation-container {
+            text-align: center;
+            margin: 3rem 0;
+        }
+        
+        .success-icon {
+            font-size: 5rem;
+            margin-bottom: 1rem;
+            animation: bounce 0.6s ease;
+        }
+        
+        @keyframes bounce {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+        
+        .confirmation-box {
+            background: linear-gradient(135deg, #6200EA 0%, #03DAC6 100%);
+            color: white;
+            padding: 3rem 2rem;
+            border-radius: 8px;
+            margin: 2rem 0;
+            box-shadow: 0 8px 24px rgba(98, 0, 234, 0.3);
+        }
+        
+        .confirmation-title {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+        
+        .confirmation-message {
+            font-size: 1.1rem;
+            opacity: 0.95;
+            line-height: 1.6;
+        }
+        
+        .order-summary {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            margin: 2rem 0;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .order-detail {
+            display: flex;
+            justify-content: space-between;
+            padding: 1rem 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .order-detail:last-child {
+            border-bottom: none;
+        }
+        
+        .order-detail-label {
+            color: #666;
+            font-weight: bold;
+        }
+        
+        .order-detail-value {
+            color: #6200EA;
+            font-weight: bold;
+        }
+        
+        .status-badge {
+            display: inline-block;
+            background: #4CAF50;
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 20px;
+            font-weight: bold;
+            margin: 1rem 0;
+        }
+        
+        .items-list {
+            background: #f5f5f5;
+            padding: 1.5rem;
+            border-radius: 6px;
+            margin: 1.5rem 0;
+            text-align: left;
+        }
+        
+        .item {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.8rem 0;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .item:last-child {
+            border-bottom: none;
+        }
+        
+        .item-name {
+            font-weight: bold;
+            color: #333;
+        }
+        
+        .item-price {
+            color: #6200EA;
+        }
+        
+        .action-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin: 2rem 0;
+        }
+        
+        .confirmation-footer {
+            background: #f5f5f5;
+            padding: 2rem;
+            border-radius: 8px;
+            margin-top: 2rem;
+        }
+        
+        .reference-number {
+            font-family: 'Courier New', monospace;
+            background: white;
+            padding: 1rem;
+            border-radius: 4px;
+            font-weight: bold;
+            color: #6200EA;
+            margin-top: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="revisao-header">
+        <div style="max-width: 1200px; margin: 0 auto; padding: 1rem;">
+            <h1 style="margin: 0; font-size: 2.5rem;">✅ Pedido Confirmado!</h1>
+            <p style="margin: 0.5rem 0 0; font-size: 1.1rem; opacity: 0.9;">
+                Seu pagamento foi processado com sucesso
+            </p>
+        </div>
+    </header>
+
+    <main style="max-width: 900px; margin: 0 auto; padding: 2rem;">
+        <!-- Confirmation Success -->
+        <div class="confirmation-container">
+            <div class="success-icon">✅</div>
+            
+            <div class="confirmation-box">
+                <div class="confirmation-title">Pagamento Aprovado!</div>
+                <div class="confirmation-message">
+                    🎉 Seu pedido foi confirmado com sucesso.<br>
+                    Você receberá um email de confirmação em breve.
+                </div>
+                <div class="status-badge">✅ PAGO</div>
+            </div>
+        </div>
+
+        <!-- Order Summary -->
+        <div class="order-summary">
+            <h2 style="color: #6200EA; margin-top: 0;">📋 Resumo do Pedido</h2>
+            
+            <div class="order-detail">
+                <span class="order-detail-label">Número do Pedido:</span>
+                <span class="order-detail-value" th:text="${'#' + #numbers.formatInteger(T(java.lang.System).currentTimeMillis() % 100000, 5)}">
+                    #12345
+                </span>
+            </div>
+            
+            <div class="order-detail">
+                <span class="order-detail-label">Data:</span>
+                <span class="order-detail-value" th:text="${#dates.format(#dates.createNow(), 'dd/MM/yyyy HH:mm:ss')}">
+                    01/01/2024 10:00:00
+                </span>
+            </div>
+            
+            <div class="order-detail">
+                <span class="order-detail-label">Método de Pagamento:</span>
+                <span class="order-detail-value">💳 Cartão de Crédito</span>
+            </div>
+            
+            <div class="order-detail">
+                <span class="order-detail-label">Status:</span>
+                <span class="order-detail-value">✅ Processado</span>
+            </div>
+        </div>
+
+        <!-- Items Ordered -->
+        <div>
+            <h2 style="color: #6200EA;">🛍️ Produtos Comprados</h2>
+            <div class="items-list">
+                <div class="item">
+                    <span class="item-name">Camisa Azul - Tamanho M</span>
+                    <span class="item-price">R$ 89,90</span>
+                </div>
+                <div class="item">
+                    <span class="item-name">Camisa Vermelha - Tamanho G</span>
+                    <span class="item-price">R$ 89,90</span>
+                </div>
+                <div style="border-top: 2px solid #333; padding-top: 1rem; margin-top: 1rem;">
+                    <div style="display: flex; justify-content: space-between; font-weight: bold; color: #333;">
+                        <span>Subtotal:</span>
+                        <span>R$ 179,80</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; font-weight: bold; color: #333; margin-top: 0.5rem;">
+                        <span>Frete:</span>
+                        <span>R$ 10,00</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; font-weight: bold; color: #6200EA; margin-top: 0.5rem; font-size: 1.1rem;">
+                        <span>Total:</span>
+                        <span>R$ 189,80</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Shipping Info -->
+        <div class="order-summary">
+            <h2 style="color: #6200EA; margin-top: 0;">🚚 Informações de Entrega</h2>
+            
+            <div class="order-detail">
+                <span class="order-detail-label">Prazo Estimado:</span>
+                <span class="order-detail-value">5-7 dias úteis</span>
+            </div>
+            
+            <div class="order-detail">
+                <span class="order-detail-label">Forma de Entrega:</span>
+                <span class="order-detail-value">📦 Sedex</span>
+            </div>
+            
+            <div style="background: #e8f5e9; padding: 1rem; border-radius: 4px; margin-top: 1rem;">
+                <p style="margin: 0; color: #2e7d32;">
+                    ℹ️ <strong>Notificação:</strong> Você receberá um código de rastreamento por email quando seu pedido for enviado.
+                </p>
+            </div>
+        </div>
+
+        <!-- Concepts Explained -->
+        <section style="background: #f5f5f5; padding: 2rem; border-radius: 8px; margin-top: 2rem;">
+            <h3 style="color: #6200EA; margin-top: 0;">📚 Conceitos Demonstrados Nesta Transação</h3>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem;">
+                <div style="background: white; padding: 1rem; border-left: 4px solid #6200EA; border-radius: 4px;">
+                    <strong style="color: #6200EA;">✅ Polimorfismo</strong>
+                    <p style="margin: 0.5rem 0 0; font-size: 0.9rem; color: #666;">
+                        Qualquer <code>MetodoPagamento</code> funcionou (CartaoCredito, PIX, etc)
+                    </p>
+                </div>
+                
+                <div style="background: white; padding: 1rem; border-left: 4px solid #FF6B6B; border-radius: 4px;">
+                    <strong style="color: #FF6B6B;">✅ Strategy Pattern</strong>
+                    <p style="margin: 0.5rem 0 0; font-size: 0.9rem; color: #666;">
+                        Algoritmo de pagamento escolhido em tempo de execução
+                    </p>
+                </div>
+                
+                <div style="background: white; padding: 1rem; border-left: 4px solid #4ECDC4; border-radius: 4px;">
+                    <strong style="color: #4ECDC4;">✅ Composição</strong>
+                    <p style="margin: 0.5rem 0 0; font-size: 0.9rem; color: #666;">
+                        Pedido contém Carrinho que contém Produtos
+                    </p>
+                </div>
+                
+                <div style="background: white; padding: 1rem; border-left: 4px solid #F7B731; border-radius: 4px;">
+                    <strong style="color: #F7B731;">✅ State Pattern</strong>
+                    <p style="margin: 0.5rem 0 0; font-size: 0.9rem; color: #666;">
+                        StatusPedido mudou de AGUARDANDO_PAGAMENTO para PAGO
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Action Buttons -->
+        <div class="action-buttons">
+            <a th:href="@{/revisao/produtos}" class="btn-primary">
+                🛍️ Continuar Comprando
+            </a>
+            <a th:href="@{/revisao/inicio}" class="btn-secondary">
+                🏠 Voltar ao Início
+            </a>
+            <a th:href="@{/}" class="btn-secondary">
+                🏠 Ir para Home
+            </a>
+        </div>
+
+        <!-- Footer Info -->
+        <div class="confirmation-footer">
+            <h3 style="color: #666; margin-top: 0;">📧 Próximos Passos</h3>
+            <ol style="color: #666; line-height: 2;">
+                <li>Um email de confirmação será enviado para seu endereço de email</li>
+                <li>Você receberá atualizações de status do pedido por email</li>
+                <li>Quando o pedido for enviado, você terá acesso a um código de rastreamento</li>
+                <li>Dúvidas? Entre em contato com nosso suporte</li>
+            </ol>
+            
+            <div class="reference-number">
+                🔢 Número de Referência:
+                <br>
+                <span th:text="${#numbers.formatInteger(T(java.lang.System).currentTimeMillis() % 1000000, 6)}">
+                    123456
+                </span>
+            </div>
+        </div>
+    </main>
+
+    <script th:src="@{/js/revisao.js}"></script>
+</body>
+</html>

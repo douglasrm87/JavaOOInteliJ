@@ -1,0 +1,357 @@
+/**
+ * 💳 PAGAMENTO.CSS - Estilos da Página de Pagamento
+ */
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+/* DISPLAY DO TOTAL */
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+.total-display {
+    background: linear-gradient(135deg, #6200EA 0%, #03DAC6 100%);
+    color: white;
+    padding: 2rem;
+    border-radius: 12px;
+    text-align: center;
+    margin-bottom: 2rem;
+    box-shadow: 0 8px 24px rgba(98, 0, 234, 0.2);
+}
+
+.total-display h2 {
+    margin: 0 0 1rem 0;
+    font-size: 1.2rem;
+    opacity: 0.9;
+}
+
+.valor-grande {
+    font-size: 3rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+/* CONTAINER DE MÉTODOS */
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+.metodos-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2rem;
+    margin: 2rem 0;
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+/* CARD DE MÉTODO */
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+.metodo-card {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.metodo-card:hover {
+    box-shadow: 0 12px 32px rgba(98, 0, 234, 0.15);
+    transform: translateY(-6px);
+}
+
+.metodo-card.featured {
+    border: 2px solid #6200EA;
+}
+
+/* Badge de Destaque */
+.badge-destaque {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+    color: #333;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-weight: 700;
+    font-size: 0.85rem;
+    box-shadow: 0 4px 12px rgba(255, 215, 0, 0.3);
+    z-index: 10;
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+/* HEADER DO MÉTODO */
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+.metodo-header {
+    background: linear-gradient(135deg, #f0f4ff 0%, #f8f2ff 100%);
+    padding: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.metodo-icon {
+    font-size: 2.5rem;
+}
+
+.metodo-header h3 {
+    margin: 0;
+    color: #6200EA;
+    font-size: 1.3rem;
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+/* INFO DO MÉTODO */
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+.metodo-info {
+    padding: 1.5rem;
+    flex-grow: 1;
+}
+
+.metodo-desc {
+    color: #666;
+    margin: 0 0 1rem 0;
+    line-height: 1.5;
+}
+
+/* Features do Método */
+.metodo-features {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.feature {
+    background: #f0f4ff;
+    color: #6200EA;
+    padding: 0.4rem 0.8rem;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+/* BOTÃO DE PAGAMENTO */
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+.metodo-card form {
+    padding: 1.5rem;
+    border-top: 1px solid #f0f0f0;
+}
+
+.btn-payment {
+    width: 100%;
+    background: linear-gradient(135deg, #6200EA 0%, #03DAC6 100%);
+    color: white;
+    padding: 0.9rem;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.btn-payment:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 16px rgba(98, 0, 234, 0.3);
+}
+
+.btn-payment:active {
+    transform: translateY(0);
+}
+
+.btn-payment.featured {
+    background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+    color: #333;
+    font-weight: 700;
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+/* STRATEGY PATTERN EXPLICADO */
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+.strategy-section {
+    background: white;
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    margin: 2rem 0;
+}
+
+.strategy-section h2 {
+    color: #6200EA;
+    margin-top: 0;
+    text-align: center;
+}
+
+.strategy-content {
+    margin: 1.5rem 0;
+}
+
+.strategy-content > p {
+    color: #666;
+    line-height: 1.6;
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 1.05rem;
+}
+
+.strategy-example {
+    background: #f8f8f8;
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+    border-left: 4px solid #6200EA;
+}
+
+.strategy-example h3 {
+    margin-top: 0;
+    color: #6200EA;
+}
+
+.strategy-example pre {
+    background: #1e1e1e;
+    padding: 1rem;
+    border-radius: 6px;
+    overflow-x: auto;
+    margin: 1rem 0 0 0;
+}
+
+.strategy-example code {
+    font-family: 'Courier New', monospace;
+    color: #d4d4d4;
+    font-size: 0.85rem;
+    line-height: 1.5;
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+/* NAVEGAÇÃO */
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+.nav-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 2rem;
+    flex-wrap: wrap;
+}
+
+.nav-buttons a {
+    padding: 0.9rem 1.8rem;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+
+.btn-secondary {
+    background: #f0f0f0;
+    color: #6200EA;
+    border: 2px solid #6200EA;
+}
+
+.btn-secondary:hover {
+    background: #6200EA;
+    color: white;
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+/* RESPONSIVIDADE */
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+@media (max-width: 1024px) {
+    .metodos-container {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    }
+}
+
+@media (max-width: 768px) {
+    .total-display {
+        padding: 1.5rem;
+    }
+
+    .valor-grande {
+        font-size: 2.2rem;
+    }
+
+    .metodos-container {
+        grid-template-columns: 1fr;
+    }
+
+    .metodo-header {
+        padding: 1rem;
+    }
+
+    .metodo-icon {
+        font-size: 2rem;
+    }
+
+    .metodo-header h3 {
+        font-size: 1.1rem;
+    }
+
+    .strategy-section {
+        padding: 1.5rem 1rem;
+    }
+
+    .strategy-example {
+        padding: 1rem;
+    }
+
+    .strategy-example pre {
+        padding: 0.8rem;
+    }
+
+    .strategy-example code {
+        font-size: 0.75rem;
+    }
+
+    .nav-buttons {
+        flex-direction: column;
+    }
+
+    .nav-buttons a {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+@media (max-width: 600px) {
+    .total-display {
+        padding: 1rem;
+    }
+
+    .valor-grande {
+        font-size: 1.8rem;
+    }
+
+    .metodo-card {
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    }
+
+    .badge-destaque {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.75rem;
+    }
+
+    .metodo-header {
+        padding: 1rem;
+        flex-wrap: wrap;
+    }
+
+    .metodo-icon {
+        font-size: 1.8rem;
+    }
+
+    .metodo-info {
+        padding: 1rem;
+    }
+
+    .strategy-content > p {
+        font-size: 0.95rem;
+    }
+}
